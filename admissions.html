@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admissions – Skypoint Angels Academy International</title>
+  <link rel="icon" href="assets/images/icon/skypoint-logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
+      --magenta: #c0176b; --magenta-light: #e0358b;
+      --gold: #d4a017; --gold-light: #f5c842;
+      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
+      --text-dark: #0d1b3e; --text-body: #374151;
+      --radius: 20px; --font-head: 'Playfair Display', Georgia, serif;
+      --font-body: 'Outfit', sans-serif;
+      --shadow: 0 10px 30px rgba(13,36,97,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER SYSTEM */
+    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
+    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
+    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: white; }
+    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .75rem; }
+    .nav-logo img { height: 50px; }
+    .nav-logo-name { color: white; font-weight: 800; font-size: 1rem; }
+    nav a { color: white; padding: .5rem .9rem; font-size: .9rem; font-weight: 500; transition: .2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); }
+    .btn-apply { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); color: white; padding: .6rem 1.6rem; border-radius: 50px; font-weight: 700; font-size: .85rem; box-shadow: 0 4px 15px rgba(192,23,107,0.3); }
+
+    /* BEAUTIFIED PAGE HERO */
+    .page-hero { 
+      min-height: 50vh; display: flex; align-items: center; 
+      background: linear-gradient(160deg, var(--blue-dark) 0%, #1a1060 100%); 
+      padding-top: 8rem; position: relative; overflow: hidden; color: white; 
+    }
+    .hero-pattern { position: absolute; inset: 0; opacity: .05; background-image: radial-gradient(circle at 20% 30%, white 1px, transparent 1px); background-size: 40px 40px; }
+    .page-hero h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; position: relative; }
+    .page-hero p { font-size: 1.2rem; max-width: 600px; opacity: .85; position: relative; }
+
+    /* CONTENT SECTIONS */
+    .section-padding { padding: 6rem 0; }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+    .section-tag { display: inline-block; color: var(--magenta); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 1rem; }
+    h2 { font-family: var(--font-head); font-size: 2.2rem; color: var(--text-dark); margin-bottom: 1.5rem; }
+    
+    /* REQ CARDS */
+    .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .req-card { 
+      background: #fff; padding: 2.5rem; border-radius: var(--radius); 
+      box-shadow: var(--shadow); border: 1px solid rgba(13,36,97,0.05);
+      transition: all .3s ease; text-align: center;
+    }
+    .req-card:hover { transform: translateY(-8px); border-color: var(--blue-light); }
+    .req-icon { width: 64px; height: 64px; background: var(--off-white); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; color: var(--blue); }
+    .req-card h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 1rem; }
+    .req-card p { font-size: .9rem; color: var(--gray); line-height: 1.6; }
+
+    /* PROCESS STEPS */
+    .process-bg { background: var(--off-white); padding: 6rem 0; }
+    .steps-container { position: relative; margin-top: 3rem; }
+    .step-item { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
+    .step-num { 
+      width: 50px; height: 50px; background: var(--blue); color: white; border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; 
+      flex-shrink: 0; box-shadow: 0 5px 15px rgba(26,79,160,0.3);
+    }
+    .step-text h4 { font-size: 1.2rem; color: var(--text-dark); margin-bottom: .5rem; }
+    .step-text p { color: var(--gray); line-height: 1.6; }
+
+    /* CALL BOX */
+    .call-box { 
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue)); 
+      padding: 4rem; border-radius: 30px; color: white; text-align: center; 
+      margin-top: 4rem; box-shadow: 0 20px 50px rgba(13,36,97,0.2);
+    }
+    .call-box h2 { color: var(--gold-light); font-size: 2rem; }
+    .phone-links { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
+    .phone-btn { display: flex; align-items: center; gap: .75rem; background: rgba(255,255,255,.12); padding: 1rem 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: .3s; }
+    .phone-btn:hover { background: rgba(255,255,255,0.2); }
+    .phone-btn span { font-weight: 800; font-size: 1.1rem; }
+
+    footer { background: var(--blue-dark); color: rgba(255,255,255,.6); padding: 4rem 0 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,.1); }
+
+    @media (max-width: 768px) {
+      .intro-grid, .req-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .hamburger { display: flex; order: 3; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
+      .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; }
+      .nav-bar .btn-apply { display: flex !important; order: 2; margin: 0; padding: .45rem .85rem !important; font-size: .75rem !important; white-space: nowrap; }
+      .nav-logo { order: 1; flex: 1; min-width: 0; }
+      .nav-logo-name { font-size: 0.85rem; }
+      .nav-logo-tag { display: none; }
+      .mobile-nav { display: none; }
+      .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,0.98); padding: 1rem; gap: .25rem; }
+      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
+      .page-hero { text-align: center; }
+      .page-hero p { margin: 1rem auto; }
+      .contact-strip-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-top"><div class="container">📍 Skypoint Angels Academy International | 📞 Now Accepting Enrollments</div></div>
+  <div class="nav-bar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/icon/skypoint-logo.png" alt="Skypoint Logo" />
+          <div class="nav-logo-text">
+            <span class="nav-logo-name" style="display:block;">Skypoint Angels</span>
+            <span class="nav-logo-tag">Academy International</span>
+          </div>
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="academics.html">Academics</a>
+          <a href="admissions.html" class="active">Admissions</a>
+          <a href="contact-us.html">Contact</a>
+        </nav>
+        <a href="registration.html" class="btn-apply">Apply Now</a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="registration.html" style="color:var(--gold-light);font-weight:700;">Enroll Now →</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="hero-pattern"></div>
+  <div class="container">
+    <h1>Admissions</h1>
+    <p>Your journey toward holistic excellence begins here. Join the vibrant community of Skypoint Angels Academy International.</p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <span class="section-tag">Welcome</span>
+        <h2>Enroll in Our 12 Classes</h2>
+        <p>Skypoint Angels Academy International provides a safe, nurturing, and intellectually stimulating environment for every child. Under the visionary leadership of <strong>Prof. Ikeh Desmond EVARISTUS</strong>, we ensure that our admissions process is clear, supportive, and designed to help your child succeed from day one.</p>
+        <p>Whether entering at the foundation levels or our advanced classes, every angel is given the space to soar.</p>
+      </div>
+      <div style="background: var(--off-white); border-radius: var(--radius); padding: 3rem; border-left: 6px solid var(--gold);">
+        <h3 style="color: var(--blue-dark); margin-bottom: 1rem; font-family: var(--font-head);">Session 2025/2026</h3>
+        <p style="margin-bottom: 1.5rem;">Applications are now officially open. We invite parents and guardians to secure their child's place in our academic program.</p>
+        <a href="registration.html" class="btn-apply" style="display: inline-block;">Online Enrollment Form →</a>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 6rem;">
+      <span class="section-tag">Preparation</span>
+      <h2>Required Documentation</h2>
+    </div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-icon">📄</div>
+        <h3>Identity</h3>
+        <p>Original and photocopy of the student's Birth Certificate and 4 recent passport-sized photographs.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">📊</div>
+        <h3>Academic</h3>
+        <p>School reports from the previous two terms and a formal Transfer Certificate if joining from another school.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">💉</div>
+        <h3>Medical</h3>
+        <p>Updated immunization record and general health report to ensure we can care for your child properly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-bg">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 4rem;">
+      <span class="section-tag">The Path</span>
+      <h2>Admissions Process</h2>
+    </div>
+    <div class="steps-container">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Enquiry & Registration</h4>
+          <p>Complete our online registration form or visit the school office to pick up an application pack.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-num" style="background: var(--magenta);">2</div>
+        <div class="step-text">
+          <h4>Assessment</h4>
+          <p>Your child will participate in a friendly placement assessment to identify their strengths and ideal class level.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>Interview</h4>
+          <p>A meeting between the school leadership, parents, and the student to discuss goals and curriculum alignment.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background: var(--gold);">4</div>
+        <div class="step-text">
+          <h4>Confirmation</h4>
+          <p>Following a successful assessment, you will receive an offer letter. Secure the spot by completing fee formalities.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="call-box">
+      <h2>Speak With Admissions</h2>
+      <p style="margin-top:0.5rem; opacity:0.9;">Have questions? Our team is available to help you navigate the process.</p>
+      <div class="phone-links">
+        <a href="tel:08058969633" class="phone-btn">
+          📞 <span>08058969633</span>
+        </a>
+        <a href="tel:08035894487" class="phone-btn">
+          📞 <span>08035894487</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 Skypoint Angels Academy International. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academics – Skypoint Angels Academy International</title>
+  <meta name="description" content="Explore the academic excellence at Skypoint Angels Academy International across 12 classes." />
+  <link rel="icon" href="assets/images/icon/skypoint-logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
+      --magenta: #c0176b; --magenta-light: #e0358b;
+      --gold: #d4a017; --gold-light: #f5c842;
+      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
+      --text-dark: #0d1b3e; --text-body: #374151;
+      --shadow-sm: 0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md: 0 8px 32px rgba(13,36,97,0.14);
+      --radius: 14px; --font-head: 'Playfair Display', Georgia, serif;
+      --font-body: 'Outfit', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
+    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
+    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: rgba(255,255,255,.85); }
+    .header-top .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: .75rem; }
+    .nav-logo img { height: 56px; width: auto; }
+    .nav-logo-name { color: var(--white); font-weight: 800; font-size: 1rem; }
+    .nav-logo-tag { color: var(--gold-light); font-size: .72rem; }
+    nav a { color: rgba(255,255,255,.88); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; }
+    nav a.active { background: rgba(255,255,255,.12); color: white; }
+    .btn-primary { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); color: white; padding: .6rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: .85rem; }
+
+    /* PAGE HERO */
+    .page-hero { min-height: 40vh; display: flex; align-items: center; background: linear-gradient(160deg, var(--blue-dark) 0%, #102d7a 60%, #1a1060 100%); padding: 8rem 0 4rem; position: relative; }
+    .page-hero h1 { font-family: var(--font-head); color: white; font-size: 3rem; margin-bottom: 1rem; }
+    .page-hero p { color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 600px; }
+
+    /* ACADEMIC CONTENT */
+    .academics-section { padding: 5rem 0; }
+    .curriculum-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
+    .content-box h2 { font-family: var(--font-head); color: var(--text-dark); font-size: 2.2rem; margin-bottom: 1.5rem; }
+    .content-box p { line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-body); }
+    
+    .class-levels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .level-card { background: var(--off-white); padding: 2rem; border-radius: var(--radius); border-left: 4px solid var(--blue); }
+    .level-card h3 { color: var(--blue-dark); margin-bottom: .75rem; font-size: 1.2rem; }
+    .level-card ul { list-style: none; }
+    .level-card li { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; font-size: .9rem; }
+    .level-card li::before { content: '•'; color: var(--magenta); font-weight: bold; }
+
+    .sidebar-cta { background: var(--blue-dark); color: white; padding: 2.5rem; border-radius: 20px; position: sticky; top: 110px; }
+    .sidebar-cta h3 { color: var(--gold-light); margin-bottom: 1rem; font-family: var(--font-head); }
+    @media (max-width: 768px) {
+      .curriculum-grid { grid-template-columns: 1fr; gap: 2rem; }
+      nav { display: none; }
+      .hamburger { display: flex; order: 3; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
+      .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; }
+      .nav-bar .btn-primary { display: flex !important; order: 2; margin: 0; padding: .45rem .85rem !important; font-size: .75rem !important; white-space: nowrap; }
+      .nav-logo { order: 1; flex: 1; min-width: 0; }
+      .nav-logo-name { font-size: 0.85rem; }
+      .nav-logo-tag { display: none; }
+      .mobile-nav { display: none; }
+      .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,.98); padding: 1rem; gap: .25rem; }
+      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="header-top">
+    <div class="container">
+      <div>📍 Skypoint Angels Academy International</div>
+      <div>📞 08058969633 | 08035894487</div>
+    </div>
+  </div>
+  <div class="nav-bar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="assets/images/icon/skypoint-logo.png" alt="Logo" />
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Skypoint Angels Academy</span>
+            <span class="nav-logo-tag">Academic Excellence</span>
+          </div>
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="academics.html" class="active">Academics</a>
+          <a href="admissions.html">Admissions</a>
+          <a href="contact-us.html">Contact</a>
+        </nav>
+        <a href="registration.html" class="btn-primary">Enroll Now</a>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact-us.html">Contact</a>
+      <a href="registration.html" style="color:var(--gold-light);font-weight:700;">Enroll Now →</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Academic Excellence</h1>
+    <p>Our curriculum is designed to nurture brilliance across 12 levels of learning.</p>
+  </div>
+</section>
+
+<section class="academics-section">
+  <div class="container">
+    <div class="curriculum-grid">
+      <div class="content-box">
+        <h2>Our Integrated Approach</h2>
+        <p>At Skypoint Angels Academy International, we move beyond traditional rote learning. Our curriculum integrates subjects to show students the connections between what they learn and the real world.</p>
+        
+        <div class="class-levels">
+          <div class="level-card">
+            <h3>Foundation Years</h3>
+            <ul>
+              <li>Class 1</li>
+              <li>Class 2</li>
+              <li>Class 3</li>
+              <li>Class 4</li>
+            </ul>
+          </div>
+          <div class="level-card" style="border-left-color: var(--magenta);">
+            <h3>Intermediate Years</h3>
+            <ul>
+              <li>Class 5</li>
+              <li>Class 6</li>
+              <li>Class 7</li>
+              <li>Class 8</li>
+            </ul>
+          </div>
+          <div class="level-card" style="border-left-color: var(--gold);">
+            <h3>Advanced Levels</h3>
+            <ul>
+              <li>Class 9</li>
+              <li>Class 10</li>
+              <li>Class 11</li>
+              <li>Class 12</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:3rem;">Holistic Development</h2>
+        <p>We believe academics is just one part of a child's growth. Our program includes creative arts, character formation, and physical education as core components of the daily schedule.</p>
+      </div>
+
+      <div class="sidebar-cta">
+        <h3>Ready to Join?</h3>
+        <p>Admissions are currently open for all 12 classes. Secure your child's future today.</p>
+        <a href="registration.html" class="btn-primary" style="display:block; text-align:center;">Start Application</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Skypoint Angels Academy International. All rights reserved.</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+  });
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
