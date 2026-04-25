@@ -3,95 +3,312 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experience – Skypoint Angels Academy International</title>
+  <title>The Skypoint Experience – Skypoint Angels Academy International</title>
+  <meta name="description" content="Discover life at Skypoint Angels Academy International — where our 'Angels' grow, thrive, and lead with purpose and confidence." />
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
+    /* ===== DESIGN TOKENS (Gilded Update) ===== */
     :root {
-      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
-      --gold: #d4a017; --gold-light: #f5c842;
-      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
-      --text-dark: #0d1b3e; --text-body: #374151;
-      --radius: 14px; --font-head: 'Playfair Display', Georgia, serif;
-      --font-body: 'Outfit', sans-serif;
+      --blue-dark:   #0d2461;
+      --blue:        #1a4fa0;
+      --blue-light:  #0095d9;
+      --purple:      #0d2461;
+      --purple-light: #1a4fa0;
+      --gold:        #d4a017;
+      --gold-light:  #f5c518;
+      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
+      --white:       #ffffff;
+      --off-white:   #f8f9ff;
+      --gray-light:  #f0f2f8;
+      --gray:        #6b7280;
+      --text-dark:   #0d1b3e;
+      --text-body:   #374151;
+      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
+      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
+      --radius:      14px;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Outfit', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; border-radius: var(--radius); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* HEADER */
-    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; background: rgba(13,36,97,.92); backdrop-filter: blur(10px); }
-    #header.scrolled { background: rgba(13,36,97,.97); }
-    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: white; }
-    .nav-bar { padding: .8rem 0; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo-name { color: white; font-weight: 800; }
-    nav a { color: white; padding: .5rem .9rem; font-size: .9rem; }
-    .btn-primary { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); color: white; padding: .6rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: .85rem; text-decoration: none; }
+    /* ===== ANIMATIONS ===== */
+    @keyframes gold-dust {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
 
-    /* PAGE HERO */
-    .page-hero { min-height: 40vh; display: flex; align-items: center; background: linear-gradient(160deg, var(--blue-dark) 0%, #1a1060 100%); padding-top: 8rem; color: white; }
-    .page-hero h1 { font-family: var(--font-head); font-size: 3rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: var(--white); font-family: var(--font-body); font-weight: 600;
+      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,160,17,0.3), transparent);
+    }
+    .btn-primary:hover::after { animation: shimmer 1s infinite linear; }
 
-    /* EXPERIENCE CONTENT */
-    .exp-section { padding: 5rem 0; }
-    .exp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 5rem; }
-    .exp-text h2 { font-family: var(--font-head); color: var(--text-dark); margin-bottom: 1rem; }
-    .exp-text p { line-height: 1.8; color: var(--text-body); }
-    .img-placeholder { width: 100%; aspect-ratio: 16/9; background: #eee; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: #999; font-style: italic; }
+    .section-label {
+      display: inline-block; color: var(--gold); font-weight: 700;
+      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--text-dark); line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--gold); }
 
-    footer { background: var(--blue-dark); color: white; padding: 4rem 0 2rem; text-align: center; }
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      min-height: 60vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
+    .page-breadcrumb a { color: var(--gold-light); }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
+
+    /* ===== EXPERIENCE SECTIONS ===== */
+    .exp-section { padding: 10rem 0; }
+    .exp-section:nth-child(even) { background: var(--off-white); }
+    
+    .exp-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
+    .exp-grid.reverse { grid-template-columns: 1.2fr 1fr; }
+    
+    .exp-content h2 { font-family: var(--font-head); font-size: 2.8rem; color: var(--text-dark); margin-bottom: 1.5rem; }
+    .exp-content p { font-size: 1.15rem; line-height: 1.8; color: var(--text-body); margin-bottom: 2rem; }
+    
+    .exp-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+    .exp-feat {
+      background: white; padding: 1.5rem; border-radius: 20px; box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(212,160,23,0.1); transition: all .3s;
+    }
+    .exp-feat:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .exp-feat h4 { color: var(--blue-dark); font-weight: 800; font-size: 1rem; margin-bottom: .5rem; }
+    .exp-feat p { font-size: .9rem; margin-bottom: 0; color: var(--gray); }
+
+    .exp-image-wrap { position: relative; }
+    .exp-image { 
+      border-radius: 40px; overflow: hidden; box-shadow: var(--shadow-lg); 
+      border: 8px solid white; position: relative; z-index: 2;
+    }
+    .exp-image-deco {
+      position: absolute; width: 100%; height: 100%; border: 3px solid var(--gold);
+      border-radius: 40px; top: 30px; left: 30px; z-index: 1; opacity: 0.3;
+    }
+    .exp-grid.reverse .exp-image-deco { left: -30px; }
+
+    /* ===== FACILITIES GRID ===== */
+    .fac-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 5rem; }
+    .fac-card {
+      background: white; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow-sm);
+      transition: all .4s; border: 1px solid rgba(0,0,0,0.03);
+    }
+    .fac-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .fac-img { width: 100%; height: 250px; background: #eee; border-bottom: 4px solid var(--gold); }
+    .fac-body { padding: 2.5rem; }
+    .fac-body h3 { font-family: var(--font-head); font-size: 1.5rem; color: var(--text-dark); margin-bottom: 1rem; }
+    .fac-body p { font-size: .95rem; color: var(--gray); line-height: 1.7; }
+
+    /* ===== CTA ===== */
+    .exp-cta {
+      background: linear-gradient(135deg, #0d1b4e 0%, #0d2461 100%);
+      padding: 10rem 0; text-align: center; color: white; position: relative; overflow: hidden;
+    }
+    .exp-cta::after {
+      content: ''; position: absolute; inset: 0; background: var(--gold-shimmer); opacity: 0.05;
+    }
+    .exp-cta h2 { font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 2rem; position: relative; z-index: 2; }
+    .exp-cta p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 3.5rem; opacity: 0.9; position: relative; z-index: 2; }
+
+    @media (max-width: 991px) {
+      .exp-grid, .exp-grid.reverse { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+      .exp-features { justify-content: center; }
+      .fac-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .fac-grid { grid-template-columns: 1fr; }
+      .exp-features { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
   <div class="container">
-    <h1>The Skypoint Experience</h1>
-    <p>Discover a vibrant learning community where holistic education takes flight.</p>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a> / <span>The Experience</span>
+      </div>
+      <h1>Life at<br/><span>Skypoint Angels</span></h1>
+      <p>A conducive environment where brilliance meets character, and every 'Angel' is empowered to soar to their full potential.</p>
+    </div>
   </div>
 </section>
 
+<!-- CAMPUS ENVIRONMENT -->
 <section class="exp-section">
   <div class="container">
-    <div class="exp-row">
-      <div class="exp-text">
-        <h2>Life on Campus</h2>
-        <p>At Skypoint Angels Academy International, daily life is an integrated journey of discovery. Our students move between state-of-the-art classrooms and vibrant creative spaces, building confidence at every step.</p>
+    <div class="exp-grid">
+      <div class="exp-content">
+        <span class="section-label">Our Sanctuary</span>
+        <h2>A Conducive Environment</h2>
+        <p>Located in the serene Institutes and Research District of Abuja, Skypoint Angels Academy International provides a safe and inspiring haven for learning.</p>
+        <div class="exp-features">
+          <div class="exp-feat">
+            <h4>Serene Location</h4>
+            <p>Jabi-Airport Road, away from city noise.</p>
+          </div>
+          <div class="exp-feat">
+            <h4>Modern Campus</h4>
+            <p>Purpose-built for girls' safety & comfort.</p>
+          </div>
+        </div>
       </div>
-      <div class="img-placeholder">Campus Life Photo Placeholder</div>
-    </div>
-
-    <div class="exp-row" style="direction: rtl;">
-      <div class="exp-text" style="direction: ltr;">
-        <h2>Beyond the Classroom</h2>
-        <p>Education at Skypoint extends far beyond textbooks. From sports competitions to artistic exhibitions, our 12 classes engage in activities that build teamwork, leadership, and character under the vision of Prof. Ikeh Desmond EVARISTUS.</p>
+      <div class="exp-image-wrap">
+        <div class="exp-image">
+          <div style="background: #0d2461; color: white; height: 450px; display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1.2rem;">Campus Life Visual</div>
+        </div>
+        <div class="exp-image-deco"></div>
       </div>
-      <div class="img-placeholder">Extra-curricular Photo Placeholder</div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2025 Skypoint Angels Academy International. All rights reserved.</p>
-</footer>
+<!-- STUDENT LIFE -->
+<section class="exp-section">
+  <div class="container">
+    <div class="exp-grid reverse">
+      <div class="exp-image-wrap">
+        <div class="exp-image">
+          <div style="background: #d4a017; color: white; height: 450px; display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 1.2rem;">Student Activities Visual</div>
+        </div>
+        <div class="exp-image-deco"></div>
+      </div>
+      <div class="exp-content">
+        <span class="section-label">Student Life</span>
+        <h2>Beyond the Classroom</h2>
+        <p>Education at Skypoint extends far beyond textbooks. Our 12-class structure incorporates a rich array of extra-curricular activities designed to build teamwork and resilience.</p>
+        <div class="exp-features">
+          <div class="exp-feat">
+            <h4>Leadership Clubs</h4>
+            <p>Fostering the next generation of global citizens.</p>
+          </div>
+          <div class="exp-feat">
+            <h4>Creative Arts</h4>
+            <p>Music, drama, and visual arts integrated daily.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
-  });
-</script>
+<!-- WORLD-CLASS FACILITIES -->
+<section class="exp-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="section-label">Infrastructure</span>
+      <h2 class="section-title">World-Class <span>Facilities</span></h2>
+    </div>
+    <div class="fac-grid">
+      <div class="fac-card">
+        <div class="fac-img" style="background: linear-gradient(45deg, #0d2461, #1a4fa0); display: flex; align-items: center; justify-content: center; color: white; font-style: italic;">Science Lab</div>
+        <div class="fac-body">
+          <h3>Advanced Science Labs</h3>
+          <p>State-of-the-art laboratories for physics, chemistry, and biology to spark scientific curiosity.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background: linear-gradient(45deg, #d4a017, #f5c518); display: flex; align-items: center; justify-content: center; color: white; font-style: italic;">Digital Suite</div>
+        <div class="fac-body">
+          <h3>ICT & Innovation Hub</h3>
+          <p>Equipped with modern computing systems for coding, robotics, and digital literacy.</p>
+        </div>
+      </div>
+      <div class="fac-card">
+        <div class="fac-img" style="background: linear-gradient(45deg, #0d1b3e, #0d2461); display: flex; align-items: center; justify-content: center; color: white; font-style: italic;">Sports Complex</div>
+        <div class="fac-body">
+          <h3>Athletic Excellence</h3>
+          <p>Expansive sports fields and indoor courts for holistic physical development.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- FINAL CTA -->
+<section class="exp-cta">
+  <div class="container">
+    <h2>Ready to Join the Angels?</h2>
+    <p>We invite you to experience our campus firsthand. Join a community where your child's brilliance is nurtured every single day.</p>
+    <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; position: relative; z-index: 2;">
+      <a href="registration.html" class="btn-primary" style="background: white; color: var(--blue-dark);">Student Portal</a>
+      <a href="contact-us.html" class="btn-primary" style="background: transparent; border: 2px solid white;">Schedule a Visit</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+  <!-- Dynamic Scripts -->
   <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      if(!wrap) return;
+      for(let i=0; i<35; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+  </script>
 </body>
 </html>
-
-
-
-
