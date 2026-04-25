@@ -178,20 +178,53 @@
       font-size: 5rem; color: var(--gold); opacity: 0.6; background: var(--off-white); padding: 0 1rem;
     }
 
-    /* ===== TIMELINE GILDED ===== */
-    .timeline-section { padding: 10rem 0; background: white; }
-    .timeline::after { background: linear-gradient(to bottom, var(--gray-light), var(--gold), var(--gray-light)); width: 2px; }
+    /* ===== TIMELINE BEAUTIFICATION ===== */
+    .timeline-section { padding: 12rem 0; background: white; position: relative; overflow: hidden; }
+    .timeline { position: relative; max-width: 1000px; margin: 6rem auto 0; }
+    .timeline::after { 
+      content: ''; position: absolute; width: 6px; 
+      background: linear-gradient(to bottom, transparent, var(--gold), var(--gold-light), var(--gold), transparent); 
+      top: 0; bottom: 0; left: 50%; transform: translateX(-50%); 
+      border-radius: 10px; opacity: 0.3;
+    }
+    .timeline-item { padding: 2rem 0; position: relative; width: 50%; opacity: 0.9; transition: all 0.5s ease; }
+    .timeline-item:nth-child(odd) { left: 0; padding-right: 5rem; text-align: right; }
+    .timeline-item:nth-child(even) { left: 50%; padding-left: 5rem; text-align: left; }
+    
     .timeline-dot { 
-      background: var(--gold-shimmer); border: none; width: 32px; height: 32px; 
-      box-shadow: 0 0 20px rgba(212,160,23,0.5); 
+      position: absolute; width: 36px; height: 36px; 
+      background: var(--gold-shimmer); border: 4px solid white; border-radius: 50%; 
+      top: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 10; 
+      box-shadow: 0 0 25px rgba(212,160,23,0.6);
+      animation: dot-pulse 2s infinite;
     }
+    @keyframes dot-pulse {
+      0% { box-shadow: 0 0 0 0 rgba(212,160,23,0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(212,160,23,0); }
+      100% { box-shadow: 0 0 0 0 rgba(212,160,23,0); }
+    }
+
     .timeline-content {
-      background: var(--off-white); border: 2px solid transparent; transition: all .4s ease;
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(15px);
+      padding: 3rem; border-radius: 30px; border: 1px solid rgba(212,160,23,0.15);
+      box-shadow: 0 15px 45px rgba(13,36,97,0.08);
+      position: relative; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .timeline-item:hover { opacity: 1; z-index: 5; }
     .timeline-item:hover .timeline-content { 
-      background: white; border-color: var(--gold); color: var(--text-dark);
-      box-shadow: var(--shadow-lg);
+      background: white; border-color: var(--gold); 
+      box-shadow: 0 30px 80px rgba(212,160,23,0.2);
+      transform: scale(1.05) translateY(-10px);
     }
+    .timeline-date { 
+      display: inline-block; padding: .5rem 1.5rem; border-radius: 50px;
+      background: rgba(212,160,23,0.1); color: var(--gold); 
+      font-weight: 800; font-size: .9rem; margin-bottom: 1.5rem;
+      letter-spacing: .1em; text-transform: uppercase;
+    }
+    .timeline-content h4 { font-family: var(--font-head); font-size: 1.8rem; color: var(--text-dark); margin-bottom: 1rem; }
+    .timeline-content p { color: var(--gray); font-size: 1.05rem; line-height: 1.8; }
+
 
     /* ===== GOLDEN FOOTER OVERRIDE ===== */
     .about-cta-banner {
@@ -349,25 +382,25 @@
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">Foundation</div>
-          <h4>The Vision Born</h4>
-          <p>Skypoint Angels Academy International was founded to provide a sanctuary of learning in Nigeria.</p>
+          <div class="timeline-date">Phase 01: Foundation</div>
+          <h4>The Visionary Inception</h4>
+          <p>Skypoint Angels Academy International was founded on the dream of creating a sanctuary where academic rigor meets moral depth. We started with a small, dedicated team of educators committed to a new standard of excellence.</p>
         </div>
       </div>
       <div class="timeline-item right">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">Integration</div>
-          <h4>Holistic Expansion</h4>
-          <p>Launch of the Integrated Subject Approach across all primary and secondary classes.</p>
+          <div class="timeline-date">Phase 02: Expansion</div>
+          <h4>The Holistic Integration</h4>
+          <p>We successfully pioneered and implemented our signature 12-class structure, integrating cross-disciplinary learning that connects science, arts, and ethics into a single, seamless educational journey.</p>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <div class="timeline-date">Modernization</div>
-          <h4>Gilded Standard</h4>
-          <p>Deployment of state-of-the-art facilities and a modernized digital-first teaching framework.</p>
+          <div class="timeline-date">Phase 03: Future</div>
+          <h4>The Gilded Standard</h4>
+          <p>Today, we lead as a digital-first institution, equipped with state-of-the-art facilities and a global mindset, ensuring our "Angels" have the wings to soar into the 21st-century world.</p>
         </div>
       </div>
     </div>

@@ -4,177 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registration & Admissions – Skypoint Angels Academy International</title>
-  <meta name="description" content="Apply for admission to Skypoint Angels Academy International. Enroll across 12 classes. Contact us at 08058969633 or 08035894487." />
+  <meta name="description" content="Apply for admission to Skypoint Angels Academy International. Enroll across 12 classes." />
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
+    /* ===== DESIGN TOKENS (Gilded Update) ===== */
     :root {
-      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
-      --gold: #d4a017; --gold-light: #f5c842;
-      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
-      --text-dark: #0d1b3e; --text-body: #374151;
-      --shadow-sm: 0 2px 8px rgba(13,36,97,0.10);
-      --shadow-md: 0 8px 32px rgba(13,36,97,0.14);
-      --radius: 14px; --font-head: 'Playfair Display', Georgia, serif;
-      --font-body: 'Outfit', sans-serif;
+      --blue-dark:   #0d2461;
+      --blue:        #1a4fa0;
+      --blue-light:  #0095d9;
+      --purple:      #0d2461;
+      --purple-light: #1a4fa0;
+      --gold:        #d4a017;
+      --gold-light:  #f5c518;
+      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
+      --white:       #ffffff;
+      --off-white:   #f8f9ff;
+      --gray-light:  #f0f2f8;
+      --gray:        #6b7280;
+      --text-dark:   #0d1b3e;
+      --text-body:   #374151;
+      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
+      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
+      --radius:      14px;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Outfit', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text-body); background: var(--off-white); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; }
-
+    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .section-label { display: inline-block; color: var(--magenta); font-weight: 600; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
-    .section-title { font-family: var(--font-head); font-size: clamp(1.8rem,4vw,2.8rem); color: var(--text-dark); line-height: 1.2; margin-bottom: 1rem; }
-    .section-title span { color: var(--blue); }
 
-    /* HEADER */
-    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
-    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
-    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: rgba(255,255,255,.85); }
-    .header-top .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
-    .header-top a { color: rgba(255,255,255,.85); transition: color .2s; } .header-top a:hover { color: var(--gold-light); }
-    .top-contact { display: flex; gap: 1.2rem; align-items: center; }
-    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: .75rem; }
-    .nav-logo img { height: 56px; width: auto; object-fit: contain; }
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-name { color: var(--blue-dark); font-weight: 800; font-size: 1rem; }
-    .nav-logo-tag { color: var(--gold); font-size: .72rem; font-weight: 500; }
-    nav a { color: var(--text-dark); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; transition: all .2s; }
-    nav a:hover, nav a.active { color: var(--white); background: rgba(13,36,97,0.06); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
-    .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; }
-    .mobile-nav { display: none; }
+    /* ===== ANIMATIONS ===== */
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
+    @keyframes gold-dust {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
+    }
 
-    /* PAGE HERO */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: var(--white); font-family: var(--font-body); font-weight: 600;
+      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
+    
+    .section-label {
+      display: inline-block; color: var(--gold); font-weight: 700;
+      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3rem);
+      color: var(--text-dark); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--gold); }
+
+    /* ===== PAGE HERO ===== */
     .page-hero {
-      min-height: 44vh; display: flex; align-items: center;
-      background: linear-gradient(160deg, var(--blue-dark) 0%, #102d7a 60%, #1a1060 100%);
-      padding: 8rem 0 4rem; position: relative; overflow: hidden;
+      min-height: 55vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
     }
-    .page-hero::before { content: ''; position: absolute; inset: 0; opacity: .06; background-image: radial-gradient(circle at 30% 40%, white 1px, transparent 1px); background-size: 55px 55px; }
-    .page-hero-content { position: relative; z-index: 1; }
-    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.60); font-size: .85rem; margin-bottom: 1rem; }
-    .page-breadcrumb a { color: var(--gold-light); }
-    .page-hero h1 { font-family: var(--font-head); color: white; font-size: clamp(2rem,5vw,3.2rem); margin-bottom: 1rem; }
-    .page-hero p { color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 580px; line-height: 1.7; }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
 
-    /* MAIN LAYOUT */
-    .reg-layout { padding: 5rem 0; }
-    .reg-grid { display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start; }
+    /* ===== REGISTRATION LAYOUT ===== */
+    .reg-layout { padding: 8rem 0; background: white; }
+    .reg-grid { display: grid; grid-template-columns: 1fr 450px; gap: 6rem; align-items: start; }
 
-    /* FORM */
-    .reg-form-card {
-      background: var(--white); border-radius: 20px; padding: 2.5rem; box-shadow: 0 8px 40px rgba(13,36,97,0.12);
-      position: sticky; top: 110px;
-    }
-    .form-title { font-family: var(--font-head); color: var(--text-dark); font-size: 1.6rem; margin-bottom: .5rem; }
-    .form-sub { color: var(--gray); font-size: .88rem; margin-bottom: 2rem; line-height: 1.6; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-dark); margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .06em; }
-    input, select, textarea {
-      width: 100%; padding: .75rem 1rem; border: 2px solid #e5e9f5; border-radius: 10px;
-      font-family: var(--font-body); font-size: .9rem; color: var(--text-body);
-      background: var(--off-white); transition: all .25s; outline: none;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--blue); background: white; box-shadow: 0 0 0 4px rgba(26,79,160,.08); }
-    textarea { resize: vertical; min-height: 100px; }
-    select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
-    .form-submit {
-      width: 100%; padding: .9rem; border: none; border-radius: 12px; cursor: pointer;
-      background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
-      color: white; font-weight: 700; font-size: 1rem; font-family: var(--font-body);
-      transition: all .3s; box-shadow: 0 4px 20px rgba(192,23,107,.30);
-    }
-    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192,23,107,.40); }
-    .form-note { text-align: center; font-size: .78rem; color: var(--gray); margin-top: .75rem; }
-
-    /* STEPS & INFO */
-    .steps-section { margin-bottom: 2.5rem; }
-    .steps-section h2 { font-family: var(--font-head); color: var(--text-dark); font-size: 1.8rem; margin-bottom: .5rem; }
-    .steps-section p { color: var(--gray); font-size: .95rem; line-height: 1.7; margin-bottom: 1.5rem; }
-    .steps { display: flex; flex-direction: column; gap: 1rem; }
+    /* STEPS & INFO (LEFT) */
+    .steps-section { margin-bottom: 5rem; }
+    .steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
     .step {
-      display: flex; gap: 1.25rem; align-items: flex-start;
-      background: var(--white); border-radius: var(--radius); padding: 1.25rem;
-      box-shadow: var(--shadow-sm); transition: all .3s;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      background: var(--off-white); border-radius: 24px; padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.03); transition: all .3s ease;
     }
-    .step:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .step:hover { background: white; transform: translateX(10px); box-shadow: var(--shadow-md); border-color: var(--gold); }
     .step-num {
       width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
-      color: white; font-weight: 800; font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center;
+      background: var(--gold-shimmer); color: var(--blue-dark); font-weight: 800; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(212,160,23,0.3);
     }
-    .step-content h4 { font-weight: 700; color: var(--text-dark); margin-bottom: .3rem; }
-    .step-content p { color: var(--gray); font-size: .88rem; line-height: 1.6; }
-    .req-section { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: var(--shadow-sm); margin-bottom: 2rem; }
-    .req-section h3 { font-weight: 700; color: var(--text-dark); margin-bottom: 1rem; font-size: 1.1rem; border-bottom: 2px solid var(--off-white); padding-bottom: .75rem; }
-    .req-list { display: flex; flex-direction: column; gap: .6rem; }
-    .req-item { display: flex; align-items: center; gap: .75rem; font-size: .9rem; color: var(--text-body); }
-    .req-item::before { content: '✓'; color: var(--blue); font-weight: 700; font-size: 1rem; min-width: 20px; }
-    .classes-ref { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); border-radius: 20px; padding: 2rem; color: white; }
-    .classes-ref h3 { font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; color: var(--gold-light); }
-    .class-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .step-content h4 { font-weight: 700; color: var(--text-dark); margin-bottom: .5rem; font-size: 1.15rem; }
+    .step-content p { color: var(--gray); font-size: .95rem; line-height: 1.6; }
+
+    .req-box { background: white; border-radius: 30px; padding: 3rem; border: 2px solid var(--off-white); margin-bottom: 3rem; }
+    .req-box h3 { font-family: var(--font-head); font-size: 1.4rem; color: var(--blue-dark); margin-bottom: 1.5rem; border-bottom: 1px solid var(--off-white); padding-bottom: 1rem; }
+    .req-list { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .req-item { display: flex; align-items: center; gap: 1rem; color: var(--text-body); font-size: .95rem; }
+    .req-item::before { content: '✓'; color: var(--gold); font-weight: 900; }
+
+    .classes-ref {
+      background: linear-gradient(135deg, #0d1b4e, #1a2880);
+      border-radius: 30px; padding: 3rem; color: white;
+    }
+    .classes-ref h3 { color: var(--gold-light); font-family: var(--font-head); font-size: 1.4rem; margin-bottom: 1.5rem; }
+    .class-pills { display: flex; flex-wrap: wrap; gap: .8rem; }
     .class-pill {
-      background: rgba(13,36,97,0.06); border: 1px solid rgba(255,255,255,.20);
-      border-radius: 50px; padding: .3rem .9rem; font-size: .83rem; font-weight: 600;
-      color: rgba(255,255,255,.90); transition: all .25s; cursor: default;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px; padding: .5rem 1.2rem; font-size: .85rem; font-weight: 700;
+      color: white; transition: all .3s;
     }
-    .class-pill:hover { background: rgba(255,255,255,.22); }
+    .class-pill:hover { background: var(--gold-shimmer); color: var(--blue-dark); }
 
-    /* CONTACT STRIP */
-    .contact-strip { background: linear-gradient(135deg, var(--magenta), #0d2461); padding: 3.5rem 0; }
-    .contact-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .contact-text h2 { font-family: var(--font-head); color: white; font-size: 1.8rem; margin-bottom: .3rem; }
-    .contact-text p { color: rgba(255,255,255,.80); font-size: .95rem; }
-    .contact-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-    .cbtn { display: flex; align-items: center; gap: .75rem; background: rgba(255,255,255,.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.25); border-radius: 12px; padding: .9rem 1.4rem; color: white; transition: all .3s; }
-    .cbtn:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
-    .cbtn .num { font-size: .95rem; font-weight: 700; }
-    .cbtn .lbl { font-size: .7rem; opacity: .75; }
+    /* FORM (RIGHT) */
+    .reg-form-wrap { position: sticky; top: 120px; }
+    .reg-form-card {
+      background: white; border-radius: 40px; padding: 4rem 3rem;
+      box-shadow: 0 30px 80px rgba(13,36,97,0.12); border: 1px solid rgba(0,0,0,0.03);
+    }
+    .form-title { font-family: var(--font-head); font-size: 2.2rem; color: var(--text-dark); margin-bottom: 1rem; }
+    .form-sub { font-size: .95rem; color: var(--gray); line-height: 1.6; margin-bottom: 3rem; }
+    
+    .form-group { margin-bottom: 1.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    label { display: block; font-size: .8rem; font-weight: 800; color: var(--text-dark); margin-bottom: .6rem; text-transform: uppercase; letter-spacing: .08em; }
+    
+    input, select, textarea {
+      width: 100%; padding: 1.1rem; border: 2px solid #f0f2f8; border-radius: 16px;
+      font-family: var(--font-body); font-size: 1rem; color: var(--text-body);
+      background: #f8f9ff; transition: all .3s; outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); background: white; box-shadow: 0 0 0 6px rgba(212,160,23,0.08); }
+    
+    .form-submit {
+      width: 100%; padding: 1.2rem; border: none; border-radius: 18px; cursor: pointer;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      color: white; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: .05em;
+      transition: all .4s; box-shadow: 0 10px 30px rgba(13,36,97,0.25);
+      position: relative; overflow: hidden;
+    }
+    .form-submit:hover { transform: translateY(-3px); box-shadow: 0 15px 45px rgba(13,36,97,0.35); }
+    .form-submit::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,160,17,0.3), transparent);
+    }
+    .form-submit:hover::after { animation: shimmer 1.5s infinite linear; }
 
-    /* FOOTER */
-    footer { background: var(--blue-dark); color: rgba(255,255,255,.80); padding: 4rem 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .footer-brand .logo { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
-    .footer-brand .logo img { height: 50px; width: auto; }
-    .footer-brand .logo-txt .name { color: white; font-weight: 800; font-size: .95rem; }
-    .footer-brand .logo-txt .tag { color: var(--gold-light); font-size: .72rem; }
-    .footer-brand p { font-size: .88rem; line-height: 1.70; color: rgba(255,255,255,.65); margin-bottom: 1.2rem; }
-    .footer-contact-list { display: flex; flex-direction: column; gap: .55rem; }
-    .footer-contact-list a { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.65); font-size: .88rem; transition: color .2s; }
-    .footer-contact-list a:hover { color: var(--gold-light); }
-    .footer-heading { color: white; font-weight: 700; font-size: 1rem; margin-bottom: 1.2rem; }
-    .footer-links { display: flex; flex-direction: column; gap: .55rem; }
-    .footer-links a { color: rgba(255,255,255,.65); font-size: .88rem; transition: color .2s; display: flex; align-items: center; gap: .4rem; }
-    .footer-links a:hover { color: var(--gold-light); }
-    .footer-links a::before { content: '›'; font-size: 1.1rem; color: var(--gold); }
-    .footer-bottom { text-align: center; padding: 1.5rem 0; font-size: .82rem; color: rgba(255,255,255,.45); }
-    .footer-bottom span { color: var(--gold-light); }
-
-    .success-msg { display: none; background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 1.2rem; text-align: center; color: #2e7d32; font-weight: 600; margin-top: 1rem; }
-
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .reg-grid { grid-template-columns: 1fr; }
-      .reg-form-card { position: static; }
+      .reg-form-wrap { position: relative; top: 0; margin-top: 4rem; }
     }
     @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-      nav { display: none; }
-      .hamburger { display: flex; }
-      .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,.98); padding: 1rem; gap: .25rem; }
-      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
-      .mobile-nav a:hover { background: rgba(13,36,97,0.06); }
-      .contact-strip-inner { flex-direction: column; text-align: center; }
+      .reg-form-card { padding: 3rem 2rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
     }
   </style>
 </head>
@@ -182,83 +185,78 @@
 
 <div id="header-placeholder"></div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
+  <div class="hero-glow"></div>
   <div class="container">
     <div class="page-hero-content">
       <div class="page-breadcrumb">
-        <a href="index.html">Home</a>
-        <span>›</span>
-        <span style="color:rgba(255,255,255,.85);">Registration &amp; Admissions</span>
+        <a href="index.html">Home</a> / <span>Admissions Portal</span>
       </div>
-      <h1>Enroll at Skypoint Angels<br/>Academy International</h1>
-      <p>Join our family of angels. Applications are open for all 12 classes. Begin your child's journey of holistic, integrated excellence today.</p>
+      <h1>Enroll Your Child<br/><span>Among The Angels</span></h1>
+      <p>Begin the journey of holistic and integrated excellence. Applications for our 12 academic classes are currently open.</p>
     </div>
   </div>
 </section>
 
+<!-- REGISTRATION LAYOUT -->
 <section class="reg-layout">
   <div class="container">
     <div class="reg-grid">
       <!-- LEFT: STEPS + INFO -->
       <div>
         <div class="steps-section">
-          <span class="section-label">How to Apply</span>
-          <h2 class="section-title">Simple <span>Admission Process</span></h2>
-          <p>Enrolling at Skypoint Angels Academy International is easy. Follow these steps to get your child started on their journey.</p>
+          <span class="section-label">Enrollment Workflow</span>
+          <h2 class="section-title">The Path to <span>Admission</span></h2>
+          <p>We've streamlined our registration process to ensure a smooth transition for your child into the Skypoint community.</p>
+          
           <div class="steps">
             <div class="step">
-              <div class="step-num">1</div>
+              <div class="step-num">01</div>
               <div class="step-content">
-                <h4>Fill the Registration Form</h4>
-                <p>Complete the online registration form on this page, or call us to pick up a physical form.</p>
+                <h4>Digital Registration</h4>
+                <p>Complete the application form on the right. Our admissions team will acknowledge receipt within 24 hours.</p>
               </div>
             </div>
             <div class="step">
-              <div class="step-num">2</div>
+              <div class="step-num">02</div>
               <div class="step-content">
-                <h4>Submit Required Documents</h4>
-                <p>Bring or upload your child's documents — birth certificate, previous school reports, passport photos.</p>
+                <h4>Document Verification</h4>
+                <p>Upload or submit the required birth certificate, previous academic reports, and passport photographs.</p>
               </div>
             </div>
             <div class="step">
-              <div class="step-num">3</div>
+              <div class="step-num">03</div>
               <div class="step-content">
-                <h4>Entrance Assessment</h4>
-                <p>Your child will complete a friendly placement assessment to ensure they enter the right class.</p>
+                <h4>Friendly Assessment</h4>
+                <p>A placement evaluation ensures your child is matched with the ideal academic phase and level.</p>
               </div>
             </div>
             <div class="step">
-              <div class="step-num">4</div>
+              <div class="step-num">04</div>
               <div class="step-content">
-                <h4>Parent/Guardian Meeting</h4>
-                <p>Meet with our principal or admissions team to discuss your child's needs and our offerings.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">5</div>
-              <div class="step-content">
-                <h4>Welcome to the Family!</h4>
-                <p>Complete enrollment formalities, pay fees, and receive your child's welcome pack. They're now a Skypoint Angel!</p>
+                <h4>Leadership Meeting</h4>
+                <p>A short consultation with school leadership to discuss goals and curriculum integration.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="req-section">
-          <h3>Required Documents</h3>
+        <div class="req-box">
+          <h3>Checklist of Requirements</h3>
           <div class="req-list">
-            <div class="req-item">Completed application/registration form</div>
-            <div class="req-item">Birth certificate (original + photocopy)</div>
-            <div class="req-item">Previous school report card (last 2 terms)</div>
-            <div class="req-item">4 recent passport photographs</div>
-            <div class="req-item">Parent/guardian valid ID</div>
-            <div class="req-item">Immunization/health record</div>
-            <div class="req-item">Transfer letter (if transferring from another school)</div>
+            <div class="req-item">Birth Certificate (Original + Copy)</div>
+            <div class="req-item">4 Recent Passport-sized Photographs</div>
+            <div class="req-item">Previous School Reports (Last 2 Terms)</div>
+            <div class="req-item">Transfer Certificate (If transferring)</div>
+            <div class="req-item">Valid Parent/Guardian Identification</div>
           </div>
         </div>
 
         <div class="classes-ref">
-          <h3>Available Classes (All Open for Enrollment)</h3>
+          <h3>Phases Available for Admission</h3>
           <div class="class-pills">
             <div class="class-pill">Class 1</div>
             <div class="class-pill">Class 2</div>
@@ -271,189 +269,113 @@
             <div class="class-pill">Class 9</div>
             <div class="class-pill">Class 10</div>
             <div class="class-pill">Class 11</div>
-            <div class="class-pill" style="background:rgba(212,160,23,.25);border-color:rgba(212,160,23,.5);color:#f5c842;">Class 12</div>
+            <div class="class-pill">Class 12</div>
           </div>
-          <p style="margin-top:1rem; font-size:.83rem; opacity:.70;">Contact us today — 08058969633 or 08035894487</p>
         </div>
       </div>
 
       <!-- RIGHT: FORM -->
-      <div class="reg-form-card">
-        <div class="form-title">Apply Now</div>
-        <div class="form-sub">Fill in your details and we'll contact you within 24 hours to guide you through the next steps.</div>
+      <div class="reg-form-wrap">
+        <div class="reg-form-card">
+          <div class="form-title">Student Registry</div>
+          <div class="form-sub">Begin the application. Fields marked with * are required.</div>
 
-        <form id="admissionForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="student_first">Child's First Name *</label>
-              <input type="text" id="student_first" name="student_first" placeholder="e.g. Daniel" required />
+          <form id="admissionForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="student_first">First Name *</label>
+                <input type="text" id="student_first" name="student_first" placeholder="e.g. David" required />
+              </div>
+              <div class="form-group">
+                <label for="student_last">Last Name *</label>
+                <input type="text" id="student_last" name="student_last" placeholder="e.g. Eze" required />
+              </div>
             </div>
             <div class="form-group">
-              <label for="student_last">Child's Last Name *</label>
-              <input type="text" id="student_last" name="student_last" placeholder="e.g. Okafor" required />
+              <label for="dob">Date of Birth *</label>
+              <input type="date" id="dob" name="dob" required />
             </div>
-          </div>
-          <div class="form-group">
-            <label for="dob">Date of Birth *</label>
-            <input type="date" id="dob" name="dob" required />
-          </div>
-          <div class="form-group">
-            <label for="class_applying">Class Applying For *</label>
-            <select id="class_applying" name="class_applying" required>
-              <option value="">-- Select Class --</option>
-              <option>Class 1</option>
-              <option>Class 2</option>
-              <option>Class 3</option>
-              <option>Class 4</option>
-              <option>Class 5</option>
-              <option>Class 6</option>
-              <option>Class 7</option>
-              <option>Class 8</option>
-              <option>Class 9</option>
-              <option>Class 10</option>
-              <option>Class 11</option>
-              <option>Class 12</option>
-            </select>
-          </div>
-          <div class="form-row">
             <div class="form-group">
-              <label for="parent_name">Parent / Guardian Name *</label>
+              <label for="class_applying">Target Class *</label>
+              <select id="class_applying" name="class_applying" required>
+                <option value="">-- Select Class --</option>
+                <option>Class 1</option>
+                <option>Class 2</option>
+                <option>Class 3</option>
+                <option>Class 4</option>
+                <option>Class 5</option>
+                <option>Class 6</option>
+                <option>Class 7</option>
+                <option>Class 8</option>
+                <option>Class 9</option>
+                <option>Class 10</option>
+                <option>Class 11</option>
+                <option>Class 12</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="parent_name">Parent / Guardian Full Name *</label>
               <input type="text" id="parent_name" name="parent_name" placeholder="Full name" required />
             </div>
             <div class="form-group">
-              <label for="relationship">Relationship *</label>
-              <select id="relationship" name="relationship" required>
-                <option value="">-- Select --</option>
-                <option>Father</option>
-                <option>Mother</option>
-                <option>Guardian</option>
-                <option>Other</option>
-              </select>
+              <label for="phone">Active Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="080XXXXXXXX" required />
             </div>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" placeholder="080XXXXXXXX" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="parent@email.com" />
-          </div>
-          <div class="form-group">
-            <label for="prev_school">Previous School (if any)</label>
-            <input type="text" id="prev_school" name="prev_school" placeholder="Name of previous school" />
-          </div>
-          <div class="form-group">
-            <label for="message">Additional Information</label>
-            <textarea id="message" name="message" placeholder="Any special needs, questions, or information you'd like us to know..."></textarea>
-          </div>
-          <button type="submit" class="form-submit">Submit Application →</button>
-          <div class="form-note">Or call us: <a href="tel:08058969633" style="color:var(--blue);font-weight:600;">08058969633</a> / <a href="tel:08035894487" style="color:var(--blue);font-weight:600;">08035894487</a></div>
-          <div class="success-msg" id="successMsg">
-            ✅ Thank you! Your application has been received. We'll contact you within 24 hours.
-          </div>
-        </form>
+            <div class="form-group">
+              <label for="message">Specific Academic Needs</label>
+              <textarea id="message" name="message" placeholder="Optional information for our admissions team..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Dispatch Registry →</button>
+            
+            <div id="successMsg" style="display:none; margin-top:2rem; padding:1.5rem; background:#f0f9eb; border:1px solid #e1f3d8; color:#67c23a; border-radius:20px; text-align:center; font-weight:700;">
+              ✓ Application securely transmitted.
+            </div>
+            
+            <div style="text-align:center; margin-top:1.5rem; font-size:.8rem; opacity:.6;">
+              Questions? Call <a href="tel:08058969633" style="color:var(--blue); font-weight:700;">08058969633</a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="contact-strip">
-  <div class="container">
-    <div class="contact-strip-inner">
-      <div class="contact-text">
-        <h2>Have Questions?</h2>
-        <p>Our admissions team is ready to help. Don't hesitate to call.</p>
-      </div>
-      <div class="contact-btns">
-        <a href="tel:08058969633" class="cbtn">
-          <span>📞</span>
-          <div><div class="num">08058969633</div><div class="lbl">Line 1</div></div>
-        </a>
-        <a href="tel:08035894487" class="cbtn">
-          <span>📞</span>
-          <div><div class="num">08035894487</div><div class="lbl">Line 2</div></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="footer-placeholder"></div>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <img src="assets/images/logo.png" alt="Skypoint Angels Academy Logo" />
-          <div class="logo-txt">
-            <div class="name">Skypoint Angels Academy<br/>International</div>
-            <div class="tag">Holistic &amp; Integrated-Based Curriculum</div>
-          </div>
-        </div>
-        <p>Nurturing tomorrow's angels through holistic, integrated, and values-based education across 12 classes.</p>
-        <div class="footer-contact-list">
-          <a href="tel:08058969633">📞 08058969633</a>
-          <a href="tel:08035894487">📞 08035894487</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-heading">Quick Links</div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="academics.html">Academics</a>
-          <a href="admissions.html">Admissions</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact-us.html">Contact Us</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-heading">School Info</div>
-        <div class="footer-links">
-          <a href="#">12 Academic Classes</a>
-          <a href="#">Holistic Curriculum</a>
-          <a href="#">Leadership Team</a>
-          <a href="registration.html">Enrollment &amp; Registration</a>
-        </div>
-        <div style="margin-top:1.5rem;">
-          <div class="footer-heading">Principal</div>
-          <p style="font-size:.85rem; color:rgba(255,255,255,.60); line-height:1.65;">
-            Prof. Ikeh Desmond EVARISTUS<br/>
-            <span style="color:rgba(255,255,255,.45); font-size:.78rem;">Principal, Skypoint Angels Academy International</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 <span>Skypoint Angels Academy International</span>. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60));
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-
-  document.getElementById('admissionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.textContent = 'Submitting...';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('successMsg').style.display = 'block';
-      btn.textContent = 'Application Submitted ✓';
-      btn.style.background = 'linear-gradient(135deg, #2e7d32, #4caf50)';
-    }, 1200);
-  });
-</script>
-
+  <!-- Dynamic Scripts -->
   <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      for(let i=0; i<30; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+
+    // Form Interactivity
+    document.getElementById('admissionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      btn.textContent = 'Transmitting...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      
+      setTimeout(() => {
+        document.getElementById('successMsg').style.display = 'block';
+        btn.textContent = 'Transmitted ✓';
+        btn.style.background = 'linear-gradient(135deg, #2e7d32, #4caf50)';
+        btn.style.opacity = '1';
+      }, 1500);
+    });
+  </script>
 </body>
 </html>
-
-
-
-

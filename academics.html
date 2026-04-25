@@ -11,70 +11,156 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
+    /* ===== DESIGN TOKENS (Gilded Update) ===== */
     :root {
-      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
-      --gold: #d4a017; --gold-light: #f5c842;
-      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
-      --text-dark: #0d1b3e; --text-body: #374151;
-      --shadow-sm: 0 2px 8px rgba(13,36,97,0.10);
-      --shadow-md: 0 8px 32px rgba(13,36,97,0.14);
-      --radius: 14px; --font-head: 'Playfair Display', Georgia, serif;
-      --font-body: 'Outfit', sans-serif;
+      --blue-dark:   #0d2461;
+      --blue:        #1a4fa0;
+      --blue-light:  #0095d9;
+      --purple:      #0d2461;
+      --purple-light: #1a4fa0;
+      --gold:        #d4a017;
+      --gold-light:  #f5c518;
+      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
+      --white:       #ffffff;
+      --off-white:   #f8f9ff;
+      --gray-light:  #f0f2f8;
+      --gray:        #6b7280;
+      --text-dark:   #0d1b3e;
+      --text-body:   #374151;
+      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
+      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
+      --radius:      14px;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Outfit', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* HEADER */
-    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
-    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
-    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: rgba(255,255,255,.85); }
-    .header-top .container { display: flex; justify-content: space-between; align-items: center; }
-    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: .75rem; }
-    .nav-logo img { height: 56px; width: auto; }
-    .nav-logo-name { color: var(--blue-dark); font-weight: 800; font-size: 1rem; }
-    .nav-logo-tag { color: var(--gold-light); font-size: .72rem; }
-    nav a { color: var(--text-dark); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; }
-    nav a.active { background: rgba(13,36,97,0.06); color: white; }
-    .btn-primary { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); color: white; padding: .6rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: .85rem; }
+    /* ===== ANIMATIONS ===== */
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
+    @keyframes gold-dust {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
+    }
 
-    /* PAGE HERO */
-    .page-hero { min-height: 40vh; display: flex; align-items: center; background: linear-gradient(160deg, var(--blue-dark) 0%, #102d7a 60%, #1a1060 100%); padding: 8rem 0 4rem; position: relative; }
-    .page-hero h1 { font-family: var(--font-head); color: white; font-size: 3rem; margin-bottom: 1rem; }
-    .page-hero p { color: rgba(255,255,255,.75); font-size: 1.1rem; max-width: 600px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: var(--white); font-family: var(--font-body); font-weight: 600;
+      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,160,17,0.3), transparent);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
+    .btn-primary:hover::after { animation: shimmer 1s infinite linear; }
 
-    /* ACADEMIC CONTENT */
-    .academics-section { padding: 5rem 0; }
-    .curriculum-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
-    .content-box h2 { font-family: var(--font-head); color: var(--text-dark); font-size: 2.2rem; margin-bottom: 1.5rem; }
-    .content-box p { line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-body); }
+    .section-label {
+      display: inline-block; color: var(--gold); font-weight: 700;
+      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3rem);
+      color: var(--text-dark); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .section-title span { color: var(--gold); }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      min-height: 55vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+    .hero-glow {
+      position: absolute; top: -100px; right: -100px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,160,23,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
+    .page-breadcrumb a { color: var(--gold-light); }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
+
+    /* ===== ACADEMICS SECTION ===== */
+    .academics-section { padding: 8rem 0; background: white; }
+    .curriculum-grid { display: grid; grid-template-columns: 1fr 380px; gap: 6rem; align-items: start; }
+
+    .content-box h2 { margin-bottom: 2rem; }
+    .content-box p { font-size: 1.1rem; line-height: 1.8; color: var(--text-body); margin-bottom: 2.5rem; }
+
+    .class-levels { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 4rem; }
+    .level-card {
+      background: var(--off-white); padding: 3.5rem; border-radius: 30px; 
+      border: 1px solid rgba(0,0,0,0.03); position: relative;
+      display: grid; grid-template-columns: 100px 1fr; gap: 3rem; align-items: center;
+      transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .level-card:hover { transform: translateX(15px); background: white; border-color: var(--gold); box-shadow: var(--shadow-lg); }
+    .level-icon {
+      width: 100px; height: 100px; border-radius: 24px;
+      background: white; border: 1px solid rgba(212,160,23,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; box-shadow: var(--shadow-sm);
+    }
+    .level-card h3 { font-family: var(--font-head); font-size: 1.8rem; color: var(--text-dark); margin-bottom: 1rem; }
     
-    .class-levels { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
-    .level-card { background: var(--off-white); padding: 2rem; border-radius: var(--radius); border-left: 4px solid var(--blue); }
-    .level-card h3 { color: var(--blue-dark); margin-bottom: .75rem; font-size: 1.2rem; }
-    .level-card ul { list-style: none; }
-    .level-card li { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; font-size: .9rem; }
-    .level-card li::before { content: '•'; color: var(--magenta); font-weight: bold; }
+    .level-list { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; }
+    .level-list li {
+      padding: .6rem 1.4rem; background: white; border-radius: 12px;
+      font-weight: 700; font-size: .95rem; color: var(--blue-dark);
+      border: 1px solid rgba(13,36,97,0.1); box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+    .level-card:hover .level-list li { background: var(--gold-shimmer); color: var(--blue-dark); border-color: transparent; }
 
-    .sidebar-cta { background: var(--blue-dark); color: white; padding: 2.5rem; border-radius: 20px; position: sticky; top: 110px; }
-    .sidebar-cta h3 { color: var(--gold-light); margin-bottom: 1rem; font-family: var(--font-head); }
+    /* ===== SIDEBAR CTA ===== */
+    .sidebar-wrap { position: sticky; top: 120px; }
+    .sidebar-cta {
+      background: linear-gradient(160deg, #0d1b4e, #1a2880);
+      color: white; padding: 4rem 3rem; border-radius: 40px; 
+      box-shadow: 0 30px 60px rgba(13,36,97,0.25); position: relative; overflow: hidden;
+    }
+    .sidebar-cta::after {
+      content: ''; position: absolute; inset: 0; background: var(--gold-shimmer); opacity: 0.05;
+    }
+    .sidebar-cta h3 { color: var(--gold-light); font-family: var(--font-head); font-size: 2rem; margin-bottom: 1.5rem; }
+    .sidebar-cta p { font-size: 1.05rem; line-height: 1.7; opacity: 0.8; margin-bottom: 2.5rem; }
+
+    @media (max-width: 1100px) {
+      .curriculum-grid { grid-template-columns: 1fr; }
+      .sidebar-wrap { position: relative; top: 0; margin-top: 4rem; }
+    }
     @media (max-width: 768px) {
-      .curriculum-grid { grid-template-columns: 1fr; gap: 2rem; }
-      nav { display: none; }
-      .hamburger { display: flex; order: 3; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
-      .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; }
-      .nav-bar .btn-primary { display: flex !important; order: 2; margin: 0; padding: .45rem .85rem !important; font-size: .75rem !important; white-space: nowrap; }
-      .nav-logo { order: 1; flex: 1; min-width: 0; }
-      .nav-logo-name { font-size: 0.85rem; }
-      .nav-logo-tag { display: none; }
-      .mobile-nav { display: none; }
-      .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,.98); padding: 1rem; gap: .25rem; }
-      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
+      .level-card { grid-template-columns: 1fr; text-align: center; padding: 3rem 2rem; }
+      .level-icon { margin: 0 auto; }
+      .level-list { justify-content: center; }
     }
   </style>
 </head>
@@ -82,82 +168,126 @@
 
 <div id="header-placeholder"></div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
+  <div class="hero-glow"></div>
   <div class="container">
-    <h1>Academic Excellence</h1>
-    <p>Our curriculum is designed to nurture brilliance across 12 levels of learning.</p>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a> / <span>Academics</span>
+      </div>
+      <h1>Excellence In Every<br/><span>Academic Phase</span></h1>
+      <p>Nurturing brilliance across 12 comprehensive levels of learning through our signature Holistic & Integrated-Based Curriculum.</p>
+    </div>
   </div>
 </section>
 
+<!-- ACADEMICS CONTENT -->
 <section class="academics-section">
   <div class="container">
     <div class="curriculum-grid">
       <div class="content-box">
-        <h2>Our Integrated Approach</h2>
-        <p>At Skypoint Angels Academy International, we move beyond traditional rote learning. Our curriculum integrates subjects to show students the connections between what they learn and the real world.</p>
+        <span class="section-label">Our Pedagogy</span>
+        <h2 class="section-title">The Integrated <span>Subject Approach</span></h2>
+        <p>At Skypoint Angels Academy International, we move beyond traditional rote learning. Our curriculum integrates subjects to show students the connections between what they learn and the real world. This ensures that knowledge is not just memorized, but understood and applied.</p>
         
         <div class="class-levels">
+          <!-- FOUNDATION -->
           <div class="level-card">
-            <h3>Foundation Years</h3>
-            <ul>
-              <li>Class 1</li>
-              <li>Class 2</li>
-              <li>Class 3</li>
-              <li>Class 4</li>
-            </ul>
+            <div class="level-icon">🌱</div>
+            <div>
+              <h3>Foundation Years</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Building the essential pillars of literacy, numeracy, and character development in a nurturing environment.</p>
+              <ul class="level-list">
+                <li>Class 1</li>
+                <li>Class 2</li>
+                <li>Class 3</li>
+                <li>Class 4</li>
+              </ul>
+            </div>
           </div>
-          <div class="level-card" style="border-left-color: var(--magenta);">
-            <h3>Intermediate Years</h3>
-            <ul>
-              <li>Class 5</li>
-              <li>Class 6</li>
-              <li>Class 7</li>
-              <li>Class 8</li>
-            </ul>
+          
+          <!-- INTERMEDIATE -->
+          <div class="level-card">
+            <div class="level-icon">🚀</div>
+            <div>
+              <h3>Intermediate Phase</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Fostering critical thinking, collaborative problem-solving, and advanced linguistic skills.</p>
+              <ul class="level-list">
+                <li>Class 5</li>
+                <li>Class 6</li>
+                <li>Class 7</li>
+                <li>Class 8</li>
+              </ul>
+            </div>
           </div>
-          <div class="level-card" style="border-left-color: var(--gold);">
-            <h3>Advanced Levels</h3>
-            <ul>
-              <li>Class 9</li>
-              <li>Class 10</li>
-              <li>Class 11</li>
-              <li>Class 12</li>
-            </ul>
+          
+          <!-- ADVANCED -->
+          <div class="level-card">
+            <div class="level-icon">🎓</div>
+            <div>
+              <h3>Advanced Mastery</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Preparing global leaders through research-led inquiry, digital literacy, and leadership mentoring.</p>
+              <ul class="level-list">
+                <li>Class 9</li>
+                <li>Class 10</li>
+                <li>Class 11</li>
+                <li>Class 12</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <h2 style="margin-top:3rem;">Holistic Development</h2>
-        <p>We believe academics is just one part of a child's growth. Our program includes creative arts, character formation, and physical education as core components of the daily schedule.</p>
+        <div style="margin-top: 6rem;">
+          <span class="section-label">Beyond Books</span>
+          <h2 class="section-title">Holistic <span>Development</span></h2>
+          <p>We believe academics is just one part of a child's growth. Our program includes creative arts, character formation, and physical education as core components of the daily schedule, ensuring every "Angel" is well-rounded and resilient.</p>
+        </div>
       </div>
 
-      <div class="sidebar-cta">
-        <h3>Ready to Join?</h3>
-        <p>Admissions are currently open for all 12 classes. Secure your child's future today.</p>
-        <a href="registration.html" class="btn-primary" style="display:block; text-align:center;">Start Application</a>
+      <!-- SIDEBAR -->
+      <div class="sidebar-wrap">
+        <div class="sidebar-cta">
+          <h3>Secure Your Child's Future</h3>
+          <p>Admissions are currently open for all 12 classes. Give your child the gift of a Skypoint education where they will be seen, known, and celebrated.</p>
+          <a href="registration.html" class="btn-primary" style="width: 100%; justify-content: center; background: var(--gold-shimmer); color: var(--blue-dark); font-weight: 800;">Portal</a>
+          
+          <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--gold-shimmer); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--blue-dark);">📞</div>
+              <div>
+                <div style="font-size: .75rem; opacity: .6; text-transform: uppercase;">Admissions Office</div>
+                <div style="font-weight: 700;">08058969633</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2025 Skypoint Angels Academy International. All rights reserved.</p>
-</footer>
+<div id="footer-placeholder"></div>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
-  });
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-  });
-</script>
-
+  <!-- Dynamic Scripts -->
   <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      for(let i=0; i<30; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+  </script>
 </body>
 </html>
-
-
-
-

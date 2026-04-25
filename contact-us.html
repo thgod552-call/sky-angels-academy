@@ -11,173 +11,209 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
+    /* ===== DESIGN TOKENS (Gilded Update) ===== */
     :root {
-      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
-      --gold: #d4a017; --gold-light: #f5c842;
-      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
-      --text-dark: #0d1b3e; --text-body: #374151;
-      --shadow-sm: 0 2px 8px rgba(13,36,97,0.10);
-      --shadow-md: 0 8px 32px rgba(13,36,97,0.14);
-      --shadow-lg: 0 20px 60px rgba(13,36,97,0.20);
-      --radius: 14px; --font-head: 'Playfair Display', Georgia, serif;
-      --font-body: 'Outfit', sans-serif;
+      --blue-dark:   #0d2461;
+      --blue:        #1a4fa0;
+      --blue-light:  #0095d9;
+      --purple:      #0d2461;
+      --purple-light: #1a4fa0;
+      --gold:        #d4a017;
+      --gold-light:  #f5c518;
+      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
+      --white:       #ffffff;
+      --off-white:   #f8f9ff;
+      --gray-light:  #f0f2f8;
+      --gray:        #6b7280;
+      --text-dark:   #0d1b3e;
+      --text-body:   #374151;
+      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
+      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
+      --radius:      14px;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Outfit', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text-body); background: var(--off-white); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; } img { max-width: 100%; display: block; }
+    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .section-label { display: inline-block; color: var(--magenta); font-weight: 600; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
-    .section-title { font-family: var(--font-head); font-size: clamp(1.8rem,4vw,2.8rem); color: var(--text-dark); line-height: 1.2; margin-bottom: 1rem; }
-    .section-title span { color: var(--blue); }
 
-    /* HEADER */
-    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
-    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
-    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: rgba(255,255,255,.85); }
-    .header-top .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
-    .header-top a { color: rgba(255,255,255,.85); transition: color .2s; } .header-top a:hover { color: var(--gold-light); }
-    .top-contact { display: flex; gap: 1.2rem; align-items: center; }
-    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: .75rem; }
-    .nav-logo img { height: 56px; width: auto; object-fit: contain; }
-    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-name { color: var(--blue-dark); font-weight: 800; font-size: 1rem; }
-    .nav-logo-tag { color: var(--gold); font-size: .72rem; font-weight: 500; }
-    nav a { color: var(--text-dark); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; transition: all .2s; }
-    nav a:hover, nav a.active { color: var(--white); background: rgba(13,36,97,0.06); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
-    .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; }
-    .mobile-nav { display: none; }
+    /* ===== UTILITY & ANIMATIONS ===== */
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
+    @keyframes gold-dust {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: var(--white); font-family: var(--font-body); font-weight: 600;
+      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212,160,17,0.3), transparent);
+      animation: none;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
+    .btn-primary:hover::after { animation: shimmer 1s infinite linear; }
+    
+    .section-label {
+      display: inline-block; color: var(--gold); font-weight: 700;
+      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3rem);
+      color: var(--text-dark); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-title span { color: var(--gold); text-shadow: 0 2px 10px rgba(212,160,23,0.2); }
 
-    /* PAGE HERO */
+    /* ===== PAGE HERO ===== */
     .page-hero {
-      min-height: 44vh; display: flex; align-items: center;
-      background: linear-gradient(160deg, var(--blue-dark) 0%, #102d7a 60%, #1a1060 100%);
-      padding: 8rem 0 4rem; position: relative; overflow: hidden;
+      min-height: 55vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
     }
-    .page-hero::before { content: ''; position: absolute; inset: 0; opacity: .06; background-image: radial-gradient(circle at 30% 40%, white 1px, transparent 1px); background-size: 55px 55px; }
-    .page-hero-content { position: relative; z-index: 1; }
-    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.60); font-size: .85rem; margin-bottom: 1rem; }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
     .page-breadcrumb a { color: var(--gold-light); }
-    .page-hero h1 { font-family: var(--font-head); color: white; font-size: clamp(2rem,5vw,3.2rem); margin-bottom: 1rem; }
-    .page-hero p { color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 580px; line-height: 1.7; }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
 
-    /* CONTACT CARDS */
-    .contact-cards-section { padding: 5rem 0 2.5rem; }
-    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    /* ===== CONTACT CARDS ===== */
+    .contact-cards-section { padding: 8rem 0 4rem; background: var(--off-white); }
+    .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 4rem; }
     .contact-card {
-      background: var(--white); border-radius: 20px; padding: 2rem; text-align: center;
-      box-shadow: var(--shadow-sm); transition: all .35s; border-bottom: 4px solid transparent;
+      background: white; border-radius: 30px; padding: 4rem 2.5rem; text-align: center;
+      box-shadow: var(--shadow-sm); border: 2px solid transparent;
+      position: relative; transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
     }
-    .contact-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .contact-card:nth-child(1) { border-bottom-color: var(--blue); }
-    .contact-card:nth-child(2) { border-bottom-color: var(--magenta); }
-    .contact-card:nth-child(3) { border-bottom-color: var(--gold); }
-    .cc-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .contact-card h3 { font-weight: 700; color: var(--text-dark); margin-bottom: .5rem; font-size: 1.05rem; }
-    .contact-card p { color: var(--gray); font-size: .88rem; line-height: 1.65; }
-    .contact-card .cc-link {
-      display: inline-flex; align-items: center; gap: .4rem;
-      margin-top: 1rem; color: var(--blue); font-weight: 600; font-size: .9rem;
-      transition: all .2s;
+    .contact-card::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+      background: var(--gold-shimmer); transform: scaleX(0); transition: transform .4s ease;
+      transform-origin: left;
     }
-    .contact-card .cc-link:hover { color: var(--magenta); }
+    .contact-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lg); border-color: rgba(212,160,23,0.15); }
+    .contact-card:hover::after { transform: scaleX(1); }
+    
+    .cc-icon { font-size: 3rem; margin-bottom: 2rem; display: block; filter: drop-shadow(0 5px 15px rgba(212,160,23,0.3)); }
+    .contact-card h3 { font-family: var(--font-head); font-size: 1.6rem; color: var(--text-dark); margin-bottom: 1rem; }
+    .contact-card p { color: var(--gray); font-size: .95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .cc-link { 
+      color: var(--gold); font-weight: 800; font-size: .95rem; text-transform: uppercase; letter-spacing: .05em; 
+      transition: all .3s; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .cc-link:hover { color: var(--blue-dark); transform: translateX(5px); }
 
-    /* MAIN CONTACT GRID */
-    .contact-main { padding: 2.5rem 0 5rem; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+    /* ===== CONTACT GRID ===== */
+    .contact-main { padding: 6rem 0 10rem; background: white; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: stretch; }
 
-    /* CONTACT INFO */
     .contact-info-card {
-      background: linear-gradient(145deg, var(--blue-dark), var(--blue));
-      border-radius: 20px; padding: 2.5rem; color: white; box-shadow: var(--shadow-lg);
+      background: linear-gradient(160deg, #0d1b4e, #1a2880);
+      border-radius: 30px; padding: 4rem 3rem; color: white; box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
     }
-    .contact-info-card h2 { font-family: var(--font-head); font-size: 1.6rem; margin-bottom: .5rem; }
-    .contact-info-card > p { color: rgba(255,255,255,.75); font-size: .9rem; line-height: 1.7; margin-bottom: 2rem; }
-    .info-items { display: flex; flex-direction: column; gap: 1.25rem; }
-    .info-item { display: flex; align-items: flex-start; gap: 1rem; }
-    .info-icon { width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px; background: rgba(13,36,97,0.06); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-    .info-item .label { font-size: .75rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .25rem; }
-    .info-item .value { color: white; font-weight: 600; font-size: .95rem; }
-    .info-item .value a { color: var(--gold-light); font-weight: 700; }
-    .info-item .value a:hover { text-decoration: underline; }
+    .contact-info-card::before {
+      content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px;
+      background: var(--gold-shimmer); opacity: 0.05; border-radius: 50%;
+    }
+    .contact-info-card h2 { font-family: var(--font-head); font-size: 2.2rem; margin-bottom: 1.5rem; }
+    .info-items { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+    .info-item { display: flex; align-items: flex-start; gap: 1.5rem; }
+    .info-icon { 
+      width: 54px; height: 54px; border-radius: 16px; background: rgba(255,255,255,0.08); 
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem; 
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .info-item .label { font-size: .8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; font-weight: 700; margin-bottom: .4rem; letter-spacing: .1em; }
+    .info-item .value { font-size: 1.1rem; color: white; font-weight: 500; line-height: 1.5; }
+    .info-item .value a { color: var(--gold-light); font-weight: 700; transition: color .3s; }
+    .info-item .value a:hover { color: white; }
+
     .principal-info-box {
-      margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .principal-info-box .label { font-size: .75rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .5rem; }
-    .principal-info-box .name { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
-    .principal-info-box .role { font-size: .8rem; color: rgba(255,255,255,.65); margin-top: .2rem; }
+    .principal-info-box .name { font-family: var(--font-head); font-size: 1.4rem; color: var(--gold-light); margin-bottom: .3rem; }
+    .principal-info-box .role { font-size: .9rem; opacity: 0.7; font-weight: 500; }
 
-    /* CONTACT FORM */
+    /* ===== CONTACT FORM ===== */
     .contact-form-card {
-      background: var(--white); border-radius: 20px; padding: 2.5rem;
-      box-shadow: 0 8px 40px rgba(13,36,97,0.12);
+      background: white; border-radius: 30px; padding: 4rem;
+      box-shadow: 0 25px 60px rgba(13,36,97,0.1); border: 1px solid rgba(0,0,0,0.03);
     }
-    .form-title { font-family: var(--font-head); color: var(--text-dark); font-size: 1.6rem; margin-bottom: .4rem; }
-    .form-sub { color: var(--gray); font-size: .88rem; margin-bottom: 2rem; line-height: 1.6; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    label { display: block; font-size: .8rem; font-weight: 600; color: var(--text-dark); margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .06em; }
+    .form-title { font-family: var(--font-head); color: var(--text-dark); font-size: 2.2rem; margin-bottom: 1rem; }
+    .form-sub { color: var(--gray); font-size: 1.05rem; margin-bottom: 3.5rem; line-height: 1.7; }
+    
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .form-group { margin-bottom: 2rem; }
+    label { display: block; font-size: .85rem; font-weight: 800; color: var(--text-dark); margin-bottom: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+    
     input, select, textarea {
-      width: 100%; padding: .75rem 1rem; border: 2px solid #e5e9f5; border-radius: 10px;
-      font-family: var(--font-body); font-size: .9rem; color: var(--text-body);
-      background: var(--off-white); transition: all .25s; outline: none;
+      width: 100%; padding: 1.2rem; border: 2px solid #f0f2f8; border-radius: 16px;
+      font-family: var(--font-body); font-size: 1rem; color: var(--text-body);
+      background: #f8f9ff; transition: all .3s; outline: none;
     }
-    input:focus, select:focus, textarea:focus { border-color: var(--blue); background: white; box-shadow: 0 0 0 4px rgba(26,79,160,.08); }
-    textarea { resize: vertical; min-height: 120px; }
-    select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); background: white; box-shadow: 0 0 0 6px rgba(212,160,23,0.08); }
+    textarea { min-height: 160px; resize: vertical; }
+
     .form-submit {
-      width: 100%; padding: .9rem; border: none; border-radius: 12px; cursor: pointer;
-      background: linear-gradient(135deg, var(--magenta), var(--magenta-light));
-      color: white; font-weight: 700; font-size: 1rem; font-family: var(--font-body);
-      transition: all .3s; box-shadow: 0 4px 20px rgba(192,23,107,.30);
+      width: 100%; padding: 1.2rem; border: none; border-radius: 18px; cursor: pointer;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      color: white; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; letter-spacing: .05em;
+      transition: all .4s; box-shadow: 0 10px 30px rgba(13,36,97,0.25);
+      position: relative; overflow: hidden;
     }
-    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192,23,107,.40); }
-    .success-msg { display: none; background: #e8f5e9; border: 2px solid #4caf50; border-radius: 12px; padding: 1.2rem; text-align: center; color: #2e7d32; font-weight: 600; margin-top: 1rem; }
-
-    /* MAP PLACEHOLDER */
-    .map-section { padding: 0 0 5rem; }
+    .form-submit:hover { transform: translateY(-3px); box-shadow: 0 15px 45px rgba(13,36,97,0.35); }
+    
+    /* ===== MAP REFINEMENT ===== */
+    .map-section { padding-bottom: 10rem; }
     .map-placeholder {
-      width: 100%; height: 350px; background: linear-gradient(145deg, var(--blue-dark), var(--blue));
-      border-radius: 20px; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; color: white; gap: 1rem; box-shadow: var(--shadow-md);
+      width: 100%; height: 450px; background: linear-gradient(145deg, #0d1b4e, #1a2880);
+      border-radius: 40px; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; color: white; gap: 1.5rem; box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
     }
-    .map-placeholder .icon { font-size: 3rem; }
-    .map-placeholder h3 { font-family: var(--font-head); font-size: 1.4rem; }
-    .map-placeholder p { color: rgba(255,255,255,.70); font-size: .9rem; text-align: center; max-width: 400px; line-height: 1.65; }
+    .map-placeholder::after {
+      content: ''; position: absolute; inset: 0; background: var(--gold-shimmer); opacity: 0.03;
+    }
+    .map-icon { font-size: 4rem; filter: drop-shadow(0 0 20px rgba(212,160,23,0.4)); }
+    .map-placeholder h3 { font-family: var(--font-head); font-size: 2rem; }
+    .map-placeholder p { max-width: 500px; text-align: center; font-size: 1.1rem; opacity: 0.8; line-height: 1.8; }
 
-    /* FOOTER */
-    footer { background: var(--blue-dark); color: rgba(255,255,255,.80); padding: 4rem 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .footer-brand .logo { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
-    .footer-brand .logo img { height: 50px; width: auto; }
-    .footer-brand .logo-txt .name { color: white; font-weight: 800; font-size: .95rem; }
-    .footer-brand .logo-txt .tag { color: var(--gold-light); font-size: .72rem; }
-    .footer-brand p { font-size: .88rem; line-height: 1.70; color: rgba(255,255,255,.65); margin-bottom: 1.2rem; }
-    .footer-contact-list { display: flex; flex-direction: column; gap: .55rem; }
-    .footer-contact-list a { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.65); font-size: .88rem; transition: color .2s; }
-    .footer-contact-list a:hover { color: var(--gold-light); }
-    .footer-heading { color: white; font-weight: 700; font-size: 1rem; margin-bottom: 1.2rem; }
-    .footer-links { display: flex; flex-direction: column; gap: .55rem; }
-    .footer-links a { color: rgba(255,255,255,.65); font-size: .88rem; transition: color .2s; display: flex; align-items: center; gap: .4rem; }
-    .footer-links a:hover { color: var(--gold-light); }
-    .footer-links a::before { content: '›'; font-size: 1.1rem; color: var(--gold); }
-    .footer-bottom { text-align: center; padding: 1.5rem 0; font-size: .82rem; color: rgba(255,255,255,.45); }
-    .footer-bottom span { color: var(--gold-light); }
-
-    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1100px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-info-card { padding: 4rem; }
+    }
     @media (max-width: 768px) {
       .contact-cards { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .form-row { grid-template-columns: 1fr; }
-      nav { display: none; }
-      .hamburger { display: flex; }
-      .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,.98); padding: 1rem; gap: .25rem; }
-      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
-      .mobile-nav a:hover { background: rgba(13,36,97,0.06); }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form-card { padding: 3rem 2rem; }
     }
   </style>
 </head>
@@ -185,16 +221,18 @@
 
 <div id="header-placeholder"></div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
+  <div class="hero-glow"></div>
   <div class="container">
     <div class="page-hero-content">
       <div class="page-breadcrumb">
-        <a href="index.html">Home</a>
-        <span>›</span>
-        <span style="color:rgba(255,255,255,.85);">Contact Us</span>
+        <a href="index.html">Home</a> / <span>Contact</span>
       </div>
-      <h1>Get in Touch With Us</h1>
-      <p>We'd love to hear from you. Whether you have questions about enrollment, our curriculum, or just want to say hello — reach out and we'll respond promptly.</p>
+      <h1>Connect With Our<br/><span>Global Community</span></h1>
+      <p>Whether you're inquiring about our Holistic Curriculum or seeking admission into our 12 academic classes, our team is ready to guide you.</p>
     </div>
   </div>
 </section>
@@ -203,30 +241,30 @@
 <section class="contact-cards-section">
   <div class="container">
     <div style="text-align:center;">
-      <span class="section-label">Contact Us</span>
-      <h2 class="section-title">We're Here to <span>Help</span></h2>
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Methods of <span>Connection</span></h2>
     </div>
     <div class="contact-cards">
       <div class="contact-card">
-        <div class="cc-icon">📞</div>
-        <h3>Call Us</h3>
-        <p>Speak directly with our admissions team. Available during school hours.</p>
-        <div style="margin-top:1rem; display:flex; flex-direction:column; gap:.4rem;">
+        <span class="cc-icon">📞</span>
+        <h3>Direct Hotline</h3>
+        <p>Available during school hours for immediate administrative support.</p>
+        <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:1rem;">
           <a href="tel:08058969633" class="cc-link">08058969633 →</a>
           <a href="tel:08035894487" class="cc-link">08035894487 →</a>
         </div>
       </div>
       <div class="contact-card">
-        <div class="cc-icon">🏫</div>
-        <h3>Visit Our School</h3>
-        <p>We welcome school visits. Meet our team, tour the facilities, and see learning in action.</p>
-        <a href="#location" class="cc-link" style="margin-top:1rem;">See Location →</a>
+        <span class="cc-icon">🏛️</span>
+        <h3>Visit Campus</h3>
+        <p>Experience our premium facilities and vibrant academic atmosphere firsthand.</p>
+        <a href="#location" class="cc-link" style="margin-top:1.5rem;">View Map Location →</a>
       </div>
       <div class="contact-card">
-        <div class="cc-icon">✉️</div>
-        <h3>Send a Message</h3>
-        <p>Fill out our contact form below and we'll get back to you within 24 hours on weekdays.</p>
-        <a href="#contact-form" class="cc-link" style="margin-top:1rem;">Go to Form →</a>
+        <span class="cc-icon">✉️</span>
+        <h3>Digital Enquiry</h3>
+        <p>Send your message through our secure portal and get a response within 24 hours.</p>
+        <a href="#contact-form" class="cc-link" style="margin-top:1.5rem;">Access Form →</a>
       </div>
     </div>
   </div>
@@ -238,13 +276,15 @@
     <div class="contact-grid">
       <!-- LEFT: INFO -->
       <div class="contact-info-card">
-        <h2>Contact Information</h2>
-        <p>Reach out through any of the channels below. We're committed to responding to every enquiry promptly and with care.</p>
+        <span class="section-label" style="color:var(--gold-light); border-color:var(--gold-light);">Information</span>
+        <h2>Contact Registry</h2>
+        <p>Our dedicated administrative office ensures that every parent, guardian, and prospective student receives personalized attention.</p>
+        
         <div class="info-items">
           <div class="info-item">
             <div class="info-icon">📞</div>
             <div>
-              <div class="label">Phone Numbers</div>
+              <div class="label">Admissions Hotlines</div>
               <div class="value">
                 <a href="tel:08058969633">08058969633</a><br/>
                 <a href="tel:08035894487">08035894487</a>
@@ -254,88 +294,71 @@
           <div class="info-item">
             <div class="info-icon">🏫</div>
             <div>
-              <div class="label">School Name</div>
+              <div class="label">Primary Location</div>
               <div class="value">Skypoint Angels Academy International</div>
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">📚</div>
-            <div>
-              <div class="label">Curriculum</div>
-              <div class="value">Holistic &amp; Integrated-Based Curriculum</div>
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-icon">🏛️</div>
-            <div>
-              <div class="label">Total Classes</div>
-              <div class="value">12 Academic Classes (Class 1 – Class 12)</div>
             </div>
           </div>
           <div class="info-item">
             <div class="info-icon">🕐</div>
             <div>
-              <div class="label">Office Hours</div>
-              <div class="value">Monday – Friday: 7:30 AM – 4:00 PM<br/>Saturday: 9:00 AM – 12:00 PM</div>
+              <div class="label">Office Schedule</div>
+              <div class="value">Mon – Fri: 7:30 AM – 4:00 PM<br/>Saturday: 9:00 AM – 12:00 PM</div>
             </div>
           </div>
         </div>
+        
         <div class="principal-info-box">
-          <div class="label">Principal</div>
+          <div class="label">Under the Supervision of</div>
           <div class="name">Prof. Ikeh Desmond EVARISTUS</div>
           <div class="role">Principal, Skypoint Angels Academy International</div>
         </div>
-        <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,.12);">
-          <a href="registration.html" style="display:inline-flex; align-items:center; gap:.5rem; background:linear-gradient(135deg,var(--gold),#b8860b); color:var(--blue-dark); font-weight:700; padding:.75rem 1.8rem; border-radius:50px; font-size:.95rem; box-shadow: 0 4px 16px rgba(212,160,23,.30); transition: all .3s;">
-            Portal →
+        
+        <div style="margin-top:3.5rem;">
+          <a href="registration.html" class="btn-primary" style="background:var(--gold-shimmer); color:var(--blue-dark); box-shadow:0 8px 25px rgba(212,160,23,0.4);">
+            Student Portal
           </a>
         </div>
       </div>
 
       <!-- RIGHT: FORM -->
       <div class="contact-form-card">
-        <div class="form-title">Send Us a Message</div>
-        <div class="form-sub">Have a question, concern, or just want to learn more? Fill in the form below.</div>
+        <div class="form-title">Send Message</div>
+        <div class="form-sub">We prioritize communication with our families. Fill in the details below.</div>
 
         <form id="contactForm" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="fname">First Name *</label>
-              <input type="text" id="fname" name="fname" placeholder="Your first name" required />
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Enter first name" required />
             </div>
             <div class="form-group">
-              <label for="lname">Last Name *</label>
-              <input type="text" id="lname" name="lname" placeholder="Your last name" required />
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lname" placeholder="Enter last name" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="cphone">Phone Number *</label>
+            <label for="cphone">Phone Number</label>
             <input type="tel" id="cphone" name="cphone" placeholder="080XXXXXXXX" required />
           </div>
           <div class="form-group">
-            <label for="cemail">Email Address</label>
-            <input type="email" id="cemail" name="cemail" placeholder="your@email.com" />
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject *</label>
+            <label for="subject">Enquiry Subject</label>
             <select id="subject" name="subject" required>
-              <option value="">-- Select a Subject --</option>
+              <option value="">-- Choose Subject --</option>
               <option>General Inquiry</option>
               <option>Admissions / Enrollment</option>
               <option>Fee Structure</option>
-              <option>Academic Programs</option>
               <option>Visit / Tour Request</option>
-              <option>Parent / Guardian Concern</option>
               <option>Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="cmessage">Your Message *</label>
-            <textarea id="cmessage" name="cmessage" placeholder="Tell us what's on your mind..." required></textarea>
+            <label for="cmessage">Your Message</label>
+            <textarea id="cmessage" name="cmessage" placeholder="How can we assist you today?" required></textarea>
           </div>
-          <button type="submit" class="form-submit">Send Message →</button>
-          <div class="success-msg" id="successMsg">
-            ✅ Message sent! We'll get back to you within 24 hours.
+          <button type="submit" class="form-submit">Dispatch Message →</button>
+          
+          <div id="successMsg" style="display:none; margin-top:2rem; padding:1.5rem; background:#f0f9eb; border:1px solid #e1f3d8; color:#67c23a; border-radius:16px; text-align:center; font-weight:700;">
+            ✓ Your message has been securely transmitted.
           </div>
         </form>
       </div>
@@ -343,92 +366,53 @@
   </div>
 </section>
 
-<!-- MAP PLACEHOLDER -->
+<!-- MAP SECTION -->
 <section class="map-section" id="location">
   <div class="container">
     <div class="map-placeholder">
-      <div class="icon">📍</div>
-      <h3>Find Us</h3>
-      <p>Our school location will be displayed here. Contact us at <strong>08058969633</strong> or <strong>08035894487</strong> to get directions to Skypoint Angels Academy International.</p>
+      <span class="map-icon">📍</span>
+      <h3>Campus Location</h3>
+      <p>Our campus coordinate system will be updated shortly. For live directions, please contact our registry at <strong>08058969633</strong>.</p>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <img src="assets/images/logo.png" alt="Skypoint Angels Academy Logo" />
-          <div class="logo-txt">
-            <div class="name">Skypoint Angels Academy<br/>International</div>
-            <div class="tag">Holistic &amp; Integrated-Based Curriculum</div>
-          </div>
-        </div>
-        <p>Nurturing tomorrow's angels through holistic, integrated, and values-based education across 12 classes.</p>
-        <div class="footer-contact-list">
-          <a href="tel:08058969633">📞 08058969633</a>
-          <a href="tel:08035894487">📞 08035894487</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-heading">Quick Links</div>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="academics.html">Academics</a>
-          <a href="admissions.html">Admissions</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact-us.html">Contact Us</a>
-        </div>
-      </div>
-      <div>
-        <div class="footer-heading">School Info</div>
-        <div class="footer-links">
-          <a href="#">12 Academic Classes</a>
-          <a href="#">Holistic Curriculum</a>
-          <a href="#">Leadership Team</a>
-          <a href="registration.html">Enrollment &amp; Registration</a>
-        </div>
-        <div style="margin-top:1.5rem;">
-          <div class="footer-heading">Principal</div>
-          <p style="font-size:.85rem; color:rgba(255,255,255,.60); line-height:1.65;">
-            Prof. Ikeh Desmond EVARISTUS<br/>
-            <span style="color:rgba(255,255,255,.45); font-size:.78rem;">Principal, Skypoint Angels Academy International</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 <span>Skypoint Angels Academy International</span>. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
-<script>
-  const header = document.getElementById('header');
-  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 60));
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
-
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('successMsg').style.display = 'block';
-      btn.textContent = 'Message Sent ✓';
-      btn.style.background = 'linear-gradient(135deg, #2e7d32, #4caf50)';
-    }, 1000);
-  });
-</script>
-
+  <!-- Dynamic Scripts -->
   <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator (Synced with About)
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      for(let i=0; i<30; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+
+    // Form Interactivity
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Transmitting...';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        document.getElementById('successMsg').style.display = 'block';
+        btn.textContent = 'Transmitted ✓';
+        btn.style.background = 'linear-gradient(135deg, #2e7d32, #4caf50)';
+        btn.style.opacity = '1';
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
-
-
-
-

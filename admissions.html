@@ -4,109 +4,176 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admissions – Skypoint Angels Academy International</title>
+  <meta name="description" content="Begin your journey at Skypoint Angels Academy International. Explore our 12-class admissions process and requirements." />
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
+    /* ===== DESIGN TOKENS (Gilded Update) ===== */
     :root {
-      --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
-      --gold: #d4a017; --gold-light: #f5c842;
-      --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
-      --text-dark: #0d1b3e; --text-body: #374151;
-      --radius: 20px; --font-head: 'Playfair Display', Georgia, serif;
-      --font-body: 'Outfit', sans-serif;
-      --shadow: 0 10px 30px rgba(13,36,97,0.08);
+      --blue-dark:   #0d2461;
+      --blue:        #1a4fa0;
+      --blue-light:  #0095d9;
+      --purple:      #0d2461;
+      --purple-light: #1a4fa0;
+      --gold:        #d4a017;
+      --gold-light:  #f5c518;
+      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
+      --white:       #ffffff;
+      --off-white:   #f8f9ff;
+      --gray-light:  #f0f2f8;
+      --gray:        #6b7280;
+      --text-dark:   #0d1b3e;
+      --text-body:   #374151;
+      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
+      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
+      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
+      --radius:      14px;
+      --font-head:   'Playfair Display', Georgia, serif;
+      --font-body:   'Outfit', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
-
-    /* HEADER SYSTEM */
-    #header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: all .35s; }
-    #header.scrolled { background: rgba(13,36,97,.97); backdrop-filter: blur(12px); box-shadow: 0 4px 24px rgba(0,0,0,.20); }
-    .header-top { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); padding: .45rem 0; font-size: .82rem; color: white; }
-    .nav-bar { background: rgba(13,36,97,.92); backdrop-filter: blur(10px); padding: .8rem 0; }
+    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: .75rem; }
-    .nav-logo img { height: 50px; }
-    .nav-logo-name { color: white; font-weight: 800; font-size: 1rem; }
-    nav a { color: white; padding: .5rem .9rem; font-size: .9rem; font-weight: 500; transition: .2s; }
-    nav a:hover, nav a.active { color: var(--gold-light); }
-    .btn-apply { background: linear-gradient(135deg, var(--magenta), var(--magenta-light)); color: white; padding: .6rem 1.6rem; border-radius: 50px; font-weight: 700; font-size: .85rem; box-shadow: 0 4px 15px rgba(192,23,107,0.3); }
 
-    /* BEAUTIFIED PAGE HERO */
-    .page-hero { 
-      min-height: 50vh; display: flex; align-items: center; 
-      background: linear-gradient(160deg, var(--blue-dark) 0%, #1a1060 100%); 
-      padding-top: 8rem; position: relative; overflow: hidden; color: white; 
+    /* ===== ANIMATIONS ===== */
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
     }
-    .hero-pattern { position: absolute; inset: 0; opacity: .05; background-image: radial-gradient(circle at 20% 30%, white 1px, transparent 1px); background-size: 40px 40px; }
-    .page-hero h1 { font-family: var(--font-head); font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; position: relative; }
-    .page-hero p { font-size: 1.2rem; max-width: 600px; opacity: .85; position: relative; }
+    @keyframes gold-dust {
+      0% { transform: translate(0, 0) scale(1); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
+    }
+    @keyframes pulse-gold {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,160,23,0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212,160,23,0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,160,23,0); }
+    }
 
-    /* CONTENT SECTIONS */
-    .section-padding { padding: 6rem 0; }
-    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
-    .section-tag { display: inline-block; color: var(--magenta); font-weight: 700; font-size: .8rem; text-transform: uppercase; letter-spacing: .15em; margin-bottom: 1rem; }
-    h2 { font-family: var(--font-head); font-size: 2.2rem; color: var(--text-dark); margin-bottom: 1.5rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      color: var(--white); font-family: var(--font-body); font-weight: 600;
+      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
     
-    /* REQ CARDS */
-    .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-    .req-card { 
-      background: #fff; padding: 2.5rem; border-radius: var(--radius); 
-      box-shadow: var(--shadow); border: 1px solid rgba(13,36,97,0.05);
-      transition: all .3s ease; text-align: center;
+    .section-label {
+      display: inline-block; color: var(--gold); font-weight: 700;
+      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
     }
-    .req-card:hover { transform: translateY(-8px); border-color: var(--blue-light); }
-    .req-icon { width: 64px; height: 64px; background: var(--off-white); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.8rem; color: var(--blue); }
-    .req-card h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 1rem; }
-    .req-card p { font-size: .9rem; color: var(--gray); line-height: 1.6; }
-
-    /* PROCESS STEPS */
-    .process-bg { background: var(--off-white); padding: 6rem 0; }
-    .steps-container { position: relative; margin-top: 3rem; }
-    .step-item { display: flex; gap: 2rem; margin-bottom: 2.5rem; align-items: flex-start; }
-    .step-num { 
-      width: 50px; height: 50px; background: var(--blue); color: white; border-radius: 50%; 
-      display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; 
-      flex-shrink: 0; box-shadow: 0 5px 15px rgba(26,79,160,0.3);
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3rem);
+      color: var(--text-dark); line-height: 1.2; margin-bottom: 1.5rem;
     }
-    .step-text h4 { font-size: 1.2rem; color: var(--text-dark); margin-bottom: .5rem; }
-    .step-text p { color: var(--gray); line-height: 1.6; }
+    .section-title span { color: var(--gold); }
 
-    /* CALL BOX */
-    .call-box { 
-      background: linear-gradient(135deg, var(--blue-dark), var(--blue)); 
-      padding: 4rem; border-radius: 30px; color: white; text-align: center; 
-      margin-top: 4rem; box-shadow: 0 20px 50px rgba(13,36,97,0.2);
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      min-height: 55vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
     }
-    .call-box h2 { color: var(--gold-light); font-size: 2rem; }
-    .phone-links { display: flex; gap: 2rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap; }
-    .phone-btn { display: flex; align-items: center; gap: .75rem; background: rgba(13,36,97,0.06); padding: 1rem 2rem; border-radius: 15px; border: 1px solid rgba(255,255,255,0.2); transition: .3s; }
-    .phone-btn:hover { background: rgba(255,255,255,0.2); }
-    .phone-btn span { font-weight: 800; font-size: 1.1rem; }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
 
-    footer { background: var(--blue-dark); color: rgba(255,255,255,.6); padding: 4rem 0 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,.1); }
+    /* ===== ADMISSIONS INTRO ===== */
+    .admissions-intro { padding: 8rem 0; background: white; }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    
+    .status-card {
+      background: var(--off-white); padding: 4rem; border-radius: 40px;
+      border: 1px solid rgba(212,160,23,0.1); position: relative;
+      box-shadow: var(--shadow-md);
+    }
+    .status-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
+      background: var(--gold-shimmer); border-radius: 40px 40px 0 0;
+    }
 
-    @media (max-width: 768px) {
-      .intro-grid, .req-grid { grid-template-columns: 1fr; }
-      nav { display: none; }
-      .hamburger { display: flex; order: 3; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
-      .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; }
-      .nav-bar .btn-apply { display: flex !important; order: 2; margin: 0; padding: .45rem .85rem !important; font-size: .75rem !important; white-space: nowrap; }
-      .nav-logo { order: 1; flex: 1; min-width: 0; }
-      .nav-logo-name { font-size: 0.85rem; }
-      .nav-logo-tag { display: none; }
-      .mobile-nav { display: none; }
-      .mobile-nav.open { display: flex; flex-direction: column; background: white; padding: 1rem; gap: .25rem; }
-      .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
-      .page-hero { text-align: center; }
-      .page-hero p { margin: 1rem auto; }
-      .contact-strip-inner { flex-direction: column; text-align: center; }
+    /* ===== DOCUMENTATION CARDS ===== */
+    .docs-section { padding: 8rem 0; background: var(--off-white); }
+    .req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 5rem; }
+    .req-card {
+      background: white; border-radius: 30px; padding: 3.5rem 2.5rem; text-align: center;
+      box-shadow: var(--shadow-sm); border: 2px solid transparent;
+      transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .req-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: var(--shadow-lg); }
+    .req-icon {
+      font-size: 3rem; margin-bottom: 2rem; display: block;
+      filter: drop-shadow(0 5px 15px rgba(212,160,23,0.2));
+    }
+
+    /* ===== PROCESS STEPS ===== */
+    .process-section { padding: 10rem 0; background: white; }
+    .steps-stagger { display: grid; grid-template-columns: 1fr; gap: 4rem; max-width: 900px; margin: 5rem auto 0; position: relative; }
+    .steps-stagger::after {
+      content: ''; position: absolute; left: 40px; top: 0; bottom: 0; width: 4px;
+      background: var(--gray-light); border-radius: 10px;
+    }
+    .step-item {
+      display: grid; grid-template-columns: 80px 1fr; gap: 3rem; align-items: center;
+      position: relative; z-index: 2; transition: all .4s ease;
+    }
+    .step-num {
+      width: 80px; height: 80px; border-radius: 50%; background: white;
+      border: 4px solid var(--blue); color: var(--blue-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-item:hover .step-num { background: var(--gold-shimmer); border-color: white; transform: scale(1.1); animation: pulse-gold 2s infinite; }
+    .step-text { background: var(--off-white); padding: 2.5rem 3rem; border-radius: 30px; border: 1px solid rgba(0,0,0,0.03); }
+    .step-text h4 { font-family: var(--font-head); font-size: 1.5rem; color: var(--text-dark); margin-bottom: .8rem; }
+
+    /* ===== GILDED CALL BOX ===== */
+    .gilded-call-box {
+      background: linear-gradient(135deg, #0d1b4e 0%, #0d2461 100%);
+      padding: 6rem 4rem; border-radius: 50px; color: white; text-align: center;
+      margin-top: 8rem; position: relative; overflow: hidden;
+      box-shadow: 0 40px 80px rgba(13,36,97,0.3);
+    }
+    .gilded-call-box::after { content: ''; position: absolute; inset: 0; background: var(--gold-shimmer); opacity: 0.1; }
+    .phone-grid { display: flex; gap: 2rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; }
+    .phone-btn {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+      padding: 1.2rem 2.5rem; border-radius: 20px; color: white; font-weight: 700;
+      display: flex; align-items: center; gap: 1rem; transition: all .3s;
+    }
+    .phone-btn:hover { background: var(--gold-shimmer); color: var(--blue-dark); transform: scale(1.05); }
+
+    @media (max-width: 991px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .req-grid { grid-template-columns: 1fr; }
+      .steps-stagger::after { display: none; }
+      .step-item { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+      .step-num { margin: 0 auto; }
     }
   </style>
 </head>
@@ -114,128 +181,140 @@
 
 <div id="header-placeholder"></div>
 
+<!-- PAGE HERO -->
 <section class="page-hero">
-  <div class="hero-pattern"></div>
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
+  <div class="hero-glow"></div>
   <div class="container">
-    <h1>Admissions</h1>
-    <p>Your journey toward holistic excellence begins here. Join the vibrant community of Skypoint Angels Academy International.</p>
+    <div class="page-hero-content">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a> / <span>Admissions</span>
+      </div>
+      <h1>Your Pathway to<br/><span>Holistic Excellence</span></h1>
+      <p>Nurturing brilliance across 12 academic classes under the visionary leadership of Prof. Ikeh Desmond EVARISTUS.</p>
+    </div>
   </div>
 </section>
 
-<section class="section-padding">
+<!-- INTRO -->
+<section class="admissions-intro">
   <div class="container">
     <div class="intro-grid">
       <div>
-        <span class="section-tag">Welcome</span>
-        <h2>Enroll in Our 12 Classes</h2>
-        <p>Skypoint Angels Academy International provides a safe, nurturing, and intellectually stimulating environment for every child. Under the visionary leadership of <strong>Prof. Ikeh Desmond EVARISTUS</strong>, we ensure that our admissions process is clear, supportive, and designed to help your child succeed from day one.</p>
-        <p>Whether entering at the foundation levels or our advanced classes, every angel is given the space to soar.</p>
+        <span class="section-label">Enrollment Open</span>
+        <h2 class="section-title">Join Our Community of <span>Angels</span></h2>
+        <p>Skypoint Angels Academy International provides a safe, nurturing, and intellectually stimulating environment for every child. Our admissions process is designed to be clear, supportive, and focused on finding the right fit for your child's unique talents.</p>
+        <p>From Class 1 to Class 12, we ensure a seamless transition that prioritizes both academic rigor and emotional well-being.</p>
+        <div style="margin-top: 2.5rem;">
+           <a href="contact-us.html" class="btn-primary">Inquire Now</a>
+        </div>
       </div>
-      <div style="background: var(--off-white); border-radius: var(--radius); padding: 3rem; border-left: 6px solid var(--gold);">
-        <h3 style="color: var(--blue-dark); margin-bottom: 1rem; font-family: var(--font-head);">Session 2025/2026</h3>
-        <p style="margin-bottom: 1.5rem;">Applications are now officially open. We invite parents and guardians to secure their child's place in our academic program.</p>
-        <a href="registration.html" class="btn-apply" style="display: inline-block;">Online Enrollment Form →</a>
+      <div class="status-card">
+        <h3 style="font-family: var(--font-head); font-size: 1.8rem; color: var(--blue-dark); margin-bottom: 1.5rem;">Session 2025/2026</h3>
+        <p style="margin-bottom: 2.5rem; line-height: 1.7;">Applications are officially open. We invite parents and guardians to secure their child's future in our signature Holistic Curriculum.</p>
+        <a href="registration.html" class="btn-primary" style="width: 100%; justify-content: center; background: var(--gold-shimmer); color: var(--blue-dark); font-weight: 800;">Online Registration →</a>
       </div>
     </div>
+  </div>
+</section>
 
-    <div style="text-align: center; margin-top: 6rem;">
-      <span class="section-tag">Preparation</span>
-      <h2>Required Documentation</h2>
+<!-- REQUIREMENTS -->
+<section class="docs-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="section-label">Preparation</span>
+      <h2 class="section-title">Required <span>Documentation</span></h2>
     </div>
     <div class="req-grid">
       <div class="req-card">
-        <div class="req-icon">📄</div>
-        <h3>Identity</h3>
-        <p>Original and photocopy of the student's Birth Certificate and 4 recent passport-sized photographs.</p>
+        <span class="req-icon">📄</span>
+        <h3 style="font-family: var(--font-head); font-size: 1.4rem;">Identity</h3>
+        <p>Original and photocopy of the student's Birth Certificate along with 4 recent passport-sized photographs.</p>
       </div>
       <div class="req-card">
-        <div class="req-icon">📊</div>
-        <h3>Academic</h3>
-        <p>School reports from the previous two terms and a formal Transfer Certificate if joining from another school.</p>
+        <span class="req-icon">📊</span>
+        <h3 style="font-family: var(--font-head); font-size: 1.4rem;">Academic Record</h3>
+        <p>Official school reports from the previous two terms and a formal Transfer Certificate if applicable.</p>
       </div>
       <div class="req-card">
-        <div class="req-icon">💉</div>
-        <h3>Medical</h3>
-        <p>Updated immunization record and general health report to ensure we can care for your child properly.</p>
+        <span class="req-icon">💉</span>
+        <h3 style="font-family: var(--font-head); font-size: 1.4rem;">Medical History</h3>
+        <p>Updated immunization records and a general health report to ensure the highest standard of care.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="process-bg">
+<!-- PROCESS -->
+<section class="process-section">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 4rem;">
-      <span class="section-tag">The Path</span>
-      <h2>Admissions Process</h2>
+    <div style="text-align: center;">
+      <span class="section-label">The Journey</span>
+      <h2 class="section-title">Admission <span>Workflow</span></h2>
     </div>
-    <div class="steps-container">
+    
+    <div class="steps-stagger">
       <div class="step-item">
-        <div class="step-num">1</div>
+        <div class="step-num">01</div>
         <div class="step-text">
-          <h4>Enquiry & Registration</h4>
-          <p>Complete our online registration form or visit the school office to pick up an application pack.</p>
+          <h4>Registration</h4>
+          <p>Submit your application via our online portal or visit the school administrative office for a physical pack.</p>
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-num" style="background: var(--magenta);">2</div>
+        <div class="step-num">02</div>
         <div class="step-text">
           <h4>Assessment</h4>
-          <p>Your child will participate in a friendly placement assessment to identify their strengths and ideal class level.</p>
+          <p>Students undergo a friendly placement evaluation to identify their academic strengths and phase alignment.</p>
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num">3</div>
+        <div class="step-num">03</div>
         <div class="step-text">
-          <h4>Interview</h4>
-          <p>A meeting between the school leadership, parents, and the student to discuss goals and curriculum alignment.</p>
+          <h4>Consultation</h4>
+          <p>A collaborative meeting between school leadership and parents to align on educational goals.</p>
         </div>
       </div>
       <div class="step-item">
-        <div class="step-num" style="background: var(--gold);">4</div>
+        <div class="step-num">04</div>
         <div class="step-text">
-          <h4>Confirmation</h4>
-          <p>Following a successful assessment, you will receive an offer letter. Secure the spot by completing fee formalities.</p>
+          <h4>Finalization</h4>
+          <p>Secure your child's position by completing the enrollment formalities and fee structure setup.</p>
         </div>
       </div>
     </div>
 
-    <div class="call-box">
-      <h2>Speak With Admissions</h2>
-      <p style="margin-top:0.5rem; opacity:0.9;">Have questions? Our team is available to help you navigate the process.</p>
-      <div class="phone-links">
-        <a href="tel:08058969633" class="phone-btn">
-          📞 <span>08058969633</span>
-        </a>
-        <a href="tel:08035894487" class="phone-btn">
-          📞 <span>08035894487</span>
-        </a>
+    <div class="gilded-call-box">
+      <h2 style="font-family: var(--font-head); font-size: 2.5rem; color: var(--gold-light);">Connect With Admissions</h2>
+      <p style="font-size: 1.2rem; opacity: 0.8; margin-top: 1rem;">Our dedicated team is ready to guide you through every step of the process.</p>
+      <div class="phone-grid">
+        <a href="tel:08058969633" class="phone-btn">📞 <span>08058969633</span></a>
+        <a href="tel:08035894487" class="phone-btn">📞 <span>08035894487</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>© 2025 Skypoint Angels Academy International. All rights reserved.</p>
-  </div>
-</footer>
+<div id="footer-placeholder"></div>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
-  });
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-  });
-</script>
-
+  <!-- Dynamic Scripts -->
   <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      for(let i=0; i<30; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+  </script>
 </body>
 </html>
-
-
-
-
