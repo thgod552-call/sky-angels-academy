@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registration & Admissions – Skypoint Angels Academy International</title>
   <meta name="description" content="Apply for admission to Skypoint Angels Academy International. Enroll across 12 classes. Contact us at 08058969633 or 08035894487." />
-  <link rel="icon" href="assets/images/icon/skypoint-logo.png" type="image/png" />
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/nav.css" />
   <style>
     :root {
       --blue-dark: #0d2461; --blue: #1a4fa0; --blue-light: #2d6fd6;
-      --magenta: #c0176b; --magenta-light: #e0358b;
+      --magenta: #1a4fa0; --magenta-light: #1a4fa0;
       --gold: #d4a017; --gold-light: #f5c842;
       --white: #ffffff; --off-white: #f8f9ff; --gray: #6b7280;
       --text-dark: #0d1b3e; --text-body: #374151;
@@ -43,12 +44,12 @@
     .nav-logo { display: flex; align-items: center; gap: .75rem; }
     .nav-logo img { height: 56px; width: auto; object-fit: contain; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-name { color: var(--white); font-weight: 800; font-size: 1rem; }
-    .nav-logo-tag { color: var(--gold-light); font-size: .72rem; font-weight: 500; }
-    nav a { color: rgba(255,255,255,.88); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; transition: all .2s; }
-    nav a:hover, nav a.active { color: var(--white); background: rgba(255,255,255,.12); }
+    .nav-logo-name { color: var(--blue-dark); font-weight: 800; font-size: 1rem; }
+    .nav-logo-tag { color: var(--gold); font-size: .72rem; font-weight: 500; }
+    nav a { color: var(--text-dark); font-size: .9rem; font-weight: 500; padding: .5rem .9rem; border-radius: 8px; transition: all .2s; }
+    nav a:hover, nav a.active { color: var(--white); background: rgba(13,36,97,0.06); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .4rem; }
-    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; }
     .mobile-nav { display: none; }
 
     /* PAGE HERO */
@@ -123,14 +124,14 @@
     .classes-ref h3 { font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; color: var(--gold-light); }
     .class-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
     .class-pill {
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.20);
+      background: rgba(13,36,97,0.06); border: 1px solid rgba(255,255,255,.20);
       border-radius: 50px; padding: .3rem .9rem; font-size: .83rem; font-weight: 600;
       color: rgba(255,255,255,.90); transition: all .25s; cursor: default;
     }
     .class-pill:hover { background: rgba(255,255,255,.22); }
 
     /* CONTACT STRIP */
-    .contact-strip { background: linear-gradient(135deg, var(--magenta), #9b0f57); padding: 3.5rem 0; }
+    .contact-strip { background: linear-gradient(135deg, var(--magenta), #0d2461); padding: 3.5rem 0; }
     .contact-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .contact-text h2 { font-family: var(--font-head); color: white; font-size: 1.8rem; margin-bottom: .3rem; }
     .contact-text p { color: rgba(255,255,255,.80); font-size: .95rem; }
@@ -172,56 +173,14 @@
       .hamburger { display: flex; }
       .mobile-nav.open { display: flex; flex-direction: column; background: rgba(13,36,97,.98); padding: 1rem; gap: .25rem; }
       .mobile-nav a { color: white; padding: .75rem 1rem; border-radius: 8px; font-size: .95rem; display: block; }
-      .mobile-nav a:hover { background: rgba(255,255,255,.12); }
+      .mobile-nav a:hover { background: rgba(13,36,97,0.06); }
       .contact-strip-inner { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<header id="header">
-  <div class="header-top">
-    <div class="container">
-      <div>📍 Skypoint Angels Academy International</div>
-      <div class="top-contact">
-        <span>📞 <a href="tel:08058969633">08058969633</a></span>
-        <span>📞 <a href="tel:08035894487">08035894487</a></span>
-      </div>
-    </div>
-  </div>
-  <div class="nav-bar">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-logo">
-          <img src="assets/images/icon/skypoint-logo.png" alt="Skypoint Angels Academy Logo" />
-          <div class="nav-logo-text">
-            <span class="nav-logo-name">Skypoint Angels Academy</span>
-            <span class="nav-logo-tag">Holistic &amp; Integrated-Based Curriculum</span>
-          </div>
-        </a>
-        <nav>
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="academics.html">Academics</a>
-          <a href="admissions.html" class="active">Admissions</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact-us.html">Contact</a>
-        </nav>
-        <a href="registration.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--magenta),var(--magenta-light));color:white;font-weight:600;padding:.55rem 1.4rem;border-radius:50px;font-size:.85rem; box-shadow:0 4px 16px rgba(192,23,107,.30);">Enroll Now</a>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-    <div class="mobile-nav" id="mobile-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="academics.html">Academics</a>
-      <a href="admissions.html">Admissions</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact-us.html">Contact</a>
-      <a href="registration.html" style="color:var(--gold-light);font-weight:700;">Enroll Now →</a>
-    </div>
-  </div>
-</header>
+<div id="header-placeholder"></div>
 
 <section class="page-hero">
   <div class="container">
@@ -425,7 +384,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo">
-          <img src="assets/images/icon/skypoint-logo.png" alt="Skypoint Angels Academy Logo" />
+          <img src="assets/images/logo.png" alt="Skypoint Angels Academy Logo" />
           <div class="logo-txt">
             <div class="name">Skypoint Angels Academy<br/>International</div>
             <div class="tag">Holistic &amp; Integrated-Based Curriculum</div>
@@ -490,5 +449,11 @@
     }, 1200);
   });
 </script>
+
+  <script src="assets/js/nav-dynamic.js"></script>
 </body>
 </html>
+
+
+
+
