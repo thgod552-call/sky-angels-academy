@@ -1,20 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Add Social Floating Buttons Early
-    const socialFloat = document.createElement('div');
-    socialFloat.className = 'social-float';
-    socialFloat.innerHTML = `
-        <a href="https://wa.me/2348054047729" target="_blank" class="float-btn btn-whatsapp" title="WhatsApp Us">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/saaiacademy?igsh=MWo1bnBmeHNhNzF0Zg==" target="_blank" class="float-btn btn-instagram" title="Follow us on Instagram">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 1.764.308 2.151.674.386.366.632.764.694 2.151.058 1.266.069 1.646.069 4.85s-.011 3.584-.069 4.85c-.062 1.367-.308 1.764-.674 2.151-.366.386-.764.632-2.151.694-1.266.058-1.646.069-4.85.069s-3.584-.011-4.85-.069c-1.367-.062-1.764-.308-2.151-.674-.386-.366-.632-.764-.694-2.151-.058-1.266-.069-1.646-.069-4.85s.011-3.584.069-4.85c.062-1.367.308-1.764.674-2.151.366-.386.764-.632 2.151-.694 1.266-.058 1.646-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-4.78 2.618-4.78 4.78 0 1.28.014 1.688.072 4.947.059 1.281.273 2.158.583 2.959.32.827.747 1.527 1.448 2.228.701.701 1.401 1.128 2.228 1.448.801.31 1.678.524 2.959.583 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.281-.059 2.158-.273 2.959-.583.827-.32 1.527-.747 2.228-1.448.701-.701 1.128-1.401 1.448-2.228.31-.801.524-1.678.583-2.959.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.2-4.358-2.618-4.78-4.78-4.78-1.28 0-1.688.014-4.947.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/share/1LHDe4xFdp/?mibextid=wwXIfr" target="_blank" class="float-btn btn-facebook" title="Find us on Facebook">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
-        </a>
-    `;
-    document.body.appendChild(socialFloat);
-
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (!headerPlaceholder) return;
 
@@ -34,6 +18,82 @@ document.addEventListener('DOMContentLoaded', function() {
                 footerPlaceholder.innerHTML = data;
             })
             .catch(err => console.error('Error loading footer:', err));
+    }
+
+    // Inject 3D Social Floating Buttons directly into body
+    if (!document.getElementById('social-floating-btns')) {
+        const socialHTML = `
+        <style>
+          .social-floating {
+            position: fixed;
+            right: 22px;
+            bottom: 50%;
+            transform: translateY(50%);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 99999;
+          }
+          .social-btn-3d {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.25), 0 10px 20px rgba(0,0,0,0.2);
+          }
+          .social-btn-3d:hover {
+            transform: scale(1.12) translateX(-6px);
+            box-shadow: 0 10px 0 rgba(0,0,0,0.2), 0 15px 30px rgba(0,0,0,0.25);
+          }
+          .social-btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 rgba(0,0,0,0.25);
+          }
+          .social-btn-3d.whatsapp { background: linear-gradient(145deg, #2edb72, #1aac58); }
+          .social-btn-3d.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+          .social-btn-3d.facebook { background: linear-gradient(145deg, #3a8ef6, #1565d8); }
+          .social-btn-3d::before {
+            content: attr(data-label);
+            position: absolute;
+            right: 70px;
+            background: white;
+            color: #0d2461;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+          }
+          .social-btn-3d:hover::before { opacity: 1; right: 78px; }
+          @media (max-width: 768px) {
+            .social-floating { right: 12px; gap: 10px; }
+            .social-btn-3d { width: 48px; height: 48px; }
+            .social-btn-3d::before { display: none; }
+          }
+        </style>
+        <div class="social-floating" id="social-floating-btns">
+          <a href="https://wa.me/2348054047729" class="social-btn-3d whatsapp" data-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/saaiacademy?igsh=MWo1bnBmeHNhNzF0Zg==" class="social-btn-3d instagram" data-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.948-.197-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/share/1LHDe4xFdp/?mibextid=wwXIfr" class="social-btn-3d facebook" data-label="Facebook" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+          </a>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', socialHTML);
     }
 
     function initializeNav() {
@@ -60,9 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         window.addEventListener('scroll', () => {
-            if (header && window.scrollY > 50) {
+            if (window.scrollY > 50) {
                 header.classList.add('scrolled');
-            } else if (header) {
+            } else {
                 header.classList.remove('scrolled');
             }
         });
