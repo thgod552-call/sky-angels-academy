@@ -3,14 +3,9 @@
   document.body.insertAdjacentHTML('beforeend',`
   <style>
     #sw-wrap{position:fixed;right:22px;bottom:50%;transform:translateY(50%);z-index:99999;display:flex;flex-direction:column;align-items:center;gap:12px}
-    #sw-toggle{width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#0d2461,#1a4fa0);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 0 rgba(0,0,0,.25),0 12px 25px rgba(13,36,97,.4);transition:all .3s;position:relative;color:white}
-    #sw-toggle:hover{transform:scale(1.1)}
-    #sw-toggle.open{background:linear-gradient(145deg,#d4a017,#f5c518);transform:rotate(45deg)}
-    #sw-toggle .sw-pulse{position:absolute;inset:0;border-radius:50%;border:3px solid #d4a017;animation:sw-pulse 2s infinite}
-    @keyframes sw-pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
-    .sw-items{display:flex;flex-direction:column;gap:10px;overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0;pointer-events:none}
-    .sw-items.open{max-height:400px;opacity:1;pointer-events:all}
-    .sw-btn{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:all .3s cubic-bezier(.175,.885,.32,1.275);position:relative;box-shadow:0 5px 0 rgba(0,0,0,.2),0 8px 16px rgba(0,0,0,.15)}
+    #sw-header{width:56px;height:56px;border-radius:50%;background:linear-gradient(145deg,#0d2461,#1a4fa0);border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 0 rgba(0,0,0,.25),0 12px 25px rgba(13,36,97,.4);position:relative;color:white}
+    .sw-items{display:flex;flex-direction:column;gap:10px}
+    .sw-btn{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:all .3s cubic-bezier(0.175,.885,.32,1.275);position:relative;box-shadow:0 5px 0 rgba(0,0,0,.2),0 8px 16px rgba(0,0,0,.15)}
     .sw-btn:hover{transform:scale(1.15) translateX(-6px)}
     .sw-btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.2)}
     .sw-btn::before{content:attr(data-tip);position:absolute;right:62px;background:white;color:#0d2461;padding:5px 12px;border-radius:8px;font-size:.8rem;font-weight:700;font-family:'Outfit',sans-serif;white-space:nowrap;opacity:0;pointer-events:none;transition:all .25s;box-shadow:0 4px 15px rgba(0,0,0,.1)}
@@ -20,7 +15,7 @@
     .sw-fb{background:linear-gradient(145deg,#3a8ef6,#1565d8)}
     .sw-tt{background:linear-gradient(145deg,#111,#333)}
     .sw-yt{background:linear-gradient(145deg,#ff3d3d,#cc0000)}
-    @media(max-width:600px){#sw-wrap{right:12px}#sw-toggle,.sw-btn{width:46px;height:46px}.sw-btn::before{display:none}}
+    @media(max-width:600px){#sw-wrap{right:12px}#sw-header,.sw-btn{width:46px;height:46px}.sw-btn::before{display:none}}
   </style>
   <div id="sw-wrap">
     <div class="sw-items" id="sw-items">
@@ -40,22 +35,8 @@
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       </a>
     </div>
-    <button id="sw-toggle" title="Follow us">
-      <div class="sw-pulse"></div>
-      <svg id="sw-icon-share" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-    </button>
+    <div id="sw-header" title="Connect with us">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+    </div>
   </div>`);
-
-  const toggle = document.getElementById('sw-toggle');
-  const items  = document.getElementById('sw-items');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    items.classList.toggle('open');
-  });
-  document.addEventListener('click', e => {
-    if (!document.getElementById('sw-wrap').contains(e.target)) {
-      toggle.classList.remove('open');
-      items.classList.remove('open');
-    }
-  });
 })();
