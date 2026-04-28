@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social FAB Widget</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      min-height: 100vh;
+    }
+
+    /* Tooltip */
+    .fab-social::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 12, 41, 0.85);
+      backdrop-filter: blur(8px);
+      color: #e2e8f0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .fab-social:hover::before {
+      opacity: 1;
+    }
+
+    /* Ripple on main button */
+    #fab-main::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.15);
+      transform: scale(0);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    #fab-main:active::after {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center">
+
+  <!-- Demo background text -->
+  <div class="text-center select-none pointer-events-none">
+    <p class="text-white/20 text-6xl font-black tracking-widest uppercase">Social</p>
+    <p class="text-white/10 text-xl mt-2 tracking-widest">Click the button →</p>
+  </div>
+
+  <!-- FAB Container -->
+  <div class="fixed bottom-8 right-8 flex flex-col items-center gap-3 z-50">
+
+    <!-- Social Buttons (shown above main button) -->
+    <div id="fab-menu" class="flex flex-col items-center gap-3 pointer-events-none">
+
+      <!-- Facebook -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               bg-[#1877F2] text-white"
+        data-tooltip="Facebook"
+        onclick="window.open('https://facebook.com','_blank')"
+      >
+        <i class="fab fa-facebook-f text-lg"></i>
+      </button>
+
+      <!-- Instagram -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               text-white"
+        style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);"
+        data-tooltip="Instagram"
+        onclick="window.open('https://instagram.com','_blank')"
+      >
+        <i class="fab fa-instagram text-lg"></i>
+      </button>
+
+      <!-- Twitter / X -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               bg-black text-white border border-white/10"
+        data-tooltip="X (Twitter)"
+        onclick="window.open('https://x.com','_blank')"
+      >
+        <i class="fab fa-x-twitter text-lg"></i>
+      </button>
+
+      <!-- YouTube -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               bg-[#FF0000] text-white"
+        data-tooltip="YouTube"
+        onclick="window.open('https://youtube.com','_blank')"
+      >
+        <i class="fab fa-youtube text-lg"></i>
+      </button>
+
+      <!-- LinkedIn -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               bg-[#0A66C2] text-white"
+        data-tooltip="LinkedIn"
+        onclick="window.open('https://linkedin.com','_blank')"
+      >
+        <i class="fab fa-linkedin-in text-lg"></i>
+      </button>
+
+      <!-- WhatsApp -->
+      <button
+        class="fab-social w-12 h-12 rounded-full flex items-center justify-center shadow-lg
+               opacity-0 translate-y-4 scale-75
+               transition-all duration-300 ease-out
+               hover:scale-110 active:scale-95 relative
+               bg-[#25D366] text-white"
+        data-tooltip="WhatsApp"
+        onclick="window.open('https://wa.me','_blank')"
+      >
+        <i class="fab fa-whatsapp text-lg"></i>
+      </button>
+
+    </div>
+
+    <!-- Main FAB Button -->
+    <button
+      id="fab-main"
+      class="relative w-14 h-14 rounded-full flex items-center justify-center
+             shadow-2xl shadow-indigo-500/40
+             transition-all duration-300 ease-out
+             hover:scale-110 active:scale-95
+             text-white text-xl"
+      style="background: linear-gradient(135deg, #667eea, #764ba2);"
+      aria-label="Toggle social links"
+    >
+      <!-- Share icon -->
+      <i class="fas fa-share-alt transition-all duration-300" id="fab-icon"></i>
+
+      <!-- Pulse ring -->
+      <span class="absolute inset-0 rounded-full animate-ping opacity-20"
+            style="background: linear-gradient(135deg, #667eea, #764ba2);"></span>
+    </button>
+
+  </div>
+
+  <script src="assets/js/social-widget.js"></script>
+</body>
+</html>
