@@ -10,74 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/nav.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
-    /* ===== DESIGN TOKENS (Gilded Update) ===== */
-    :root {
-      --blue-dark:   #0d2461;
-      --blue:        #1a4fa0;
-      --blue-light:  #0095d9;
-      --purple:      #0d2461;
-      --purple-light: #1a4fa0;
-      --gold:        #d4a017;
-      --gold-light:  #f5c518;
-      --gold-shimmer: linear-gradient(135deg, #d4a017 0%, #f5c518 50%, #d4a017 100%);
-      --white:       #ffffff;
-      --off-white:   #f8f9ff;
-      --gray-light:  #f0f2f8;
-      --gray:        #6b7280;
-      --text-dark:   #0d1b3e;
-      --text-body:   #374151;
-      --shadow-sm:   0 2px 8px rgba(13,36,97,0.10);
-      --shadow-md:   0 8px 32px rgba(13,36,97,0.14);
-      --shadow-lg:   0 20px 60px rgba(13,36,97,0.20);
-      --radius:      14px;
-      --font-head:   'Playfair Display', Georgia, serif;
-      --font-body:   'Outfit', sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text-body); background: var(--white); overflow-x: hidden; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    /* ===== PAGE SPECIFIC STYLES ===== */
 
-    /* ===== UTILITY & ANIMATIONS ===== */
-    @keyframes shimmer {
-      0% { transform: translateX(-100%) skewX(-15deg); }
-      100% { transform: translateX(200%) skewX(-15deg); }
-    }
-    @keyframes gold-dust {
-      0% { transform: translate(0, 0) scale(1); opacity: 0; }
-      50% { opacity: 0.8; }
-      100% { transform: translate(100px, -100px) scale(0.5); opacity: 0; }
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: linear-gradient(135deg, var(--purple), var(--purple-light));
-      color: var(--white); font-family: var(--font-body); font-weight: 600;
-      padding: .75rem 2rem; border-radius: 50px; border: none; cursor: pointer;
-      font-size: .95rem; transition: all .4s ease; box-shadow: 0 4px 20px rgba(13,36,97,0.30);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(212,160,17,0.3), transparent);
-      animation: none;
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(13,36,97,0.45); }
-    .btn-primary:hover::after { animation: shimmer 1s infinite linear; }
-    
-    .section-label {
-      display: inline-block; color: var(--gold); font-weight: 700;
-      font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
-      border-bottom: 2px solid var(--gold); padding-bottom: 2px;
-    }
-    .section-title {
-      font-family: var(--font-head); font-size: clamp(2rem, 4.5vw, 3rem);
-      color: var(--text-dark); line-height: 1.2; margin-bottom: 1rem;
-    }
-    .section-title span { color: var(--gold); text-shadow: 0 2px 10px rgba(212,160,23,0.2); }
 
     /* ===== PAGE HERO ===== */
     .page-hero {

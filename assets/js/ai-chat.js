@@ -1,13 +1,13 @@
 (function(){
   if(document.getElementById('saai-chat')) return;
-  const WA='2348054047729';
+  const WA='2348058969633';
   const KB=[
     {q:['admission','enroll','register','apply','intake','join','start'],a:'📋 **Admissions are currently open** for Session 2025/2026!\n\nTo enroll your child, visit our **Online Registration Portal** or contact us directly.\n\n🏫 We accept students from **Class 1 to Class 12**.\n\n📞 Call: 08058969633 or 08035894487'},
     {q:['fee','fees','tuition','cost','price','pay','payment'],a:'💰 For detailed **fee structure and payment plans**, please contact our admissions office directly.\n\n📞 08058969633 | 08035894487\n\nOur team will walk you through all payment options.'},
-    {q:['location','address','where','find','direction','map'],a:'📍 **Skypoint Angels Academy International**\n\nPlot 273 Institutes & Research District,\nJabi-Airport Road, Abuja, Nigeria.\n\n🗺️ We are in the serene research district, away from city noise – a perfect learning environment!'},
+    {q:['location','address','where','find','direction','map'],a:'📍 **Skypoint Angels Academy International**\n\nGbazango Newlayout, Plot 407, No 1, Skypoint Anglican Church, Avenue, Kubwa, Abuja, Federal Capital Territory\n\n🗺️ We are in a serene environment – perfect for learning!'},
     {q:['curriculum','subject','class','grade','academic','learn','course','program'],a:'📚 We operate a unique **Holistic & Integrated-Based Curriculum** across **12 academic classes**.\n\nKey highlights:\n✅ Academic excellence\n✅ Strong moral values\n✅ Creative expression\n✅ Critical thinking & character development'},
     {q:['principal','founder','head','leader','prof','ikeh','evaristus'],a:'👨‍🏫 **Prof. Ikeh Desmond EVARISTUS** is the Founder & Principal of Skypoint Angels Academy International.\n\nHe brings over **two decades of educational excellence** and visionary leadership to the institution.'},
-    {q:['contact','phone','call','email','reach','number','whatsapp'],a:'📞 **Contact Us:**\n\n• Phone: 08058969633\n• Phone: 08035894487\n• WhatsApp: +234 805 404 7729\n\n📍 Plot 273 Institutes & Research District, Jabi-Airport Road, Abuja'},
+    {q:['contact','phone','call','email','reach','number','whatsapp'],a:'📞 **Contact Us:**\n\n• Phone: 08058969633\n• Phone: 08035894487\n• WhatsApp: +234 805 896 9633\n\n📍 Gbazango Newlayout, Kubwa, Abuja'},
     {q:['school','about','skypoint','saai','academy','institution'],a:'🌟 **Skypoint Angels Academy International** is a premier institution in Abuja dedicated to:\n\n✨ Academic excellence\n🧭 Character formation\n🌍 Global citizenship\n\nWe nurture brilliant minds through a Holistic & Integrated approach.'},
     {q:['facility','facilities','lab','library','sport','computer','ict','science'],a:'🏛️ Our **world-class facilities** include:\n\n🔬 Advanced Science Laboratories\n💻 ICT & Innovation Hub\n⚽ Athletic & Sports Complex\n📚 Learning resource centers\n\nAll designed to inspire curiosity and excellence!'},
     {q:['hour','time','open','schedule','visit','tour'],a:'🕐 **School Hours:**\n\nMonday – Friday: 7:30 AM – 3:30 PM\n\nWould you like to **schedule a campus visit**? Contact us:\n📞 08058969633'},
