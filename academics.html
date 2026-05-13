@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academics – Skypoint Angels Academy International</title>
+  <meta name="description" content="Explore the academic excellence at Skypoint Angels Academy International across 12 classes." />
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/nav.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ===== PAGE SPECIFIC STYLES ===== */
+
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      min-height: 55vh; position: relative; display: flex; align-items: center;
+      background: linear-gradient(160deg, #0d1b4e 0%, #0d2461 45%, #1a4fa0 100%);
+      padding: 10rem 0 6rem; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; opacity: .12;
+      background-image: radial-gradient(circle at 25% 25%, var(--gold-light) 1px, transparent 1px),
+                        radial-gradient(circle at 75% 75%, var(--gold-light) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .gold-dust-wrap { position: absolute; inset: 0; pointer-events: none; }
+    .dust {
+      position: absolute; width: 4px; height: 4px; background: var(--gold-light);
+      border-radius: 50%; box-shadow: 0 0 10px var(--gold-light);
+      animation: gold-dust 8s infinite linear;
+    }
+    .hero-glow {
+      position: absolute; top: -100px; right: -100px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,160,23,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-hero-content { position: relative; z-index: 2; width: 100%; }
+    .page-breadcrumb { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,0.6); font-size: .9rem; margin-bottom: 2rem; font-weight: 500; }
+    .page-breadcrumb a { color: var(--gold-light); }
+    .page-hero h1 { color: white; font-family: var(--font-head); font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 2rem; }
+    .page-hero h1 span { color: var(--gold-light); }
+    .page-hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.8; }
+
+    /* ===== ACADEMICS SECTION ===== */
+    .academics-section { padding: 10rem 0; background: white; position: relative; }
+    .curriculum-grid { display: grid; grid-template-columns: 1fr 380px; gap: 7rem; align-items: start; }
+
+    .content-box h2 { margin-bottom: 2rem; }
+    .content-box p { font-size: 1.15rem; line-height: 1.8; color: var(--text-body); margin-bottom: 3rem; }
+
+    .class-levels { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-top: 5rem; }
+    .level-card {
+      background: var(--off-white); padding: 4.5rem; border-radius: 40px; 
+      border: 1px solid rgba(212,160,23,0.1); position: relative;
+      display: grid; grid-template-columns: 120px 1fr; gap: 4rem; align-items: center;
+      transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden; z-index: 1;
+    }
+    .level-card::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: all 0.6s ease; skew-x: -25deg; z-index: 2;
+    }
+    .level-card:hover { transform: translateX(20px); background: white; border-color: var(--gold); box-shadow: var(--shadow-lg); }
+    .level-card:hover::before { left: 200%; }
+    
+    .level-icon {
+      width: 120px; height: 120px; border-radius: 30px;
+      background: white; border: 1px solid rgba(212,160,23,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; box-shadow: var(--shadow-sm);
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .level-card h3 { font-family: var(--font-head); font-size: 2.2rem; color: var(--text-dark); margin-bottom: 1.2rem; }
+    
+    .level-list { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; }
+    .level-list li {
+      padding: .7rem 1.6rem; background: white; border-radius: 14px;
+      font-weight: 800; font-size: 1rem; color: var(--blue-dark);
+      border: 1px solid rgba(13,36,97,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+    }
+    .level-card:hover .level-list li { background: var(--gold-shimmer); color: var(--blue-dark); border-color: transparent; transform: scale(1.05); }
+
+    /* ===== SIDEBAR CTA ===== */
+    .sidebar-wrap { position: sticky; top: 140px; }
+    .sidebar-cta {
+      background: linear-gradient(160deg, #0d1b4e, #1a2880);
+      color: white; padding: 5rem 3.5rem; border-radius: 50px; 
+      box-shadow: 0 40px 90px rgba(13,36,97,0.3); position: relative; overflow: hidden;
+      border: 1px solid rgba(212,160,23,0.2);
+    }
+    .sidebar-cta::after {
+      content: ''; position: absolute; inset: 0; background: var(--gold-shimmer); opacity: 0.08;
+    }
+    .sidebar-cta h3 { color: var(--gold-light); font-family: var(--font-head); font-size: 2.2rem; margin-bottom: 1.5rem; }
+    .sidebar-cta p { font-size: 1.1rem; line-height: 1.8; opacity: 0.9; margin-bottom: 3rem; }
+    .sidebar-cta .btn-primary { width: 100%; justify-content: center; background: var(--gold-shimmer); color: var(--blue-dark); font-weight: 900; }
+
+    @media (max-width: 1100px) {
+      .curriculum-grid { grid-template-columns: 1fr; }
+      .sidebar-wrap { position: relative; top: 0; margin-top: 4rem; }
+    }
+    @media (max-width: 768px) {
+      .level-card { grid-template-columns: 1fr; text-align: center; padding: 3rem 2rem; }
+      .level-icon { margin: 0 auto; }
+      .level-list { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="gold-dust-wrap" id="gold-dust"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a> / <span>Academics</span>
+      </div>
+      <h1>Excellence In Every<br/><span>Academic Phase</span></h1>
+      <p>Nurturing brilliance across 12 comprehensive levels of learning through our signature Holistic & Integrated-Based Curriculum.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMICS CONTENT -->
+<section class="academics-section">
+  <div class="container">
+    <div class="curriculum-grid">
+      <div class="content-box">
+        <span class="section-label">Our Pedagogy</span>
+        <h2 class="section-title">The Integrated <span>Subject Approach</span></h2>
+        <p>At Skypoint Angels Academy International, we move beyond traditional rote learning. Our curriculum integrates subjects to show students the connections between what they learn and the real world. This ensures that knowledge is not just memorized, but understood and applied.</p>
+        
+        <div class="class-levels">
+          <!-- FOUNDATION -->
+          <div class="level-card">
+            <div class="level-icon">🌱</div>
+            <div>
+              <h3>Foundation Years</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Building the essential pillars of literacy, numeracy, and character development in a nurturing environment.</p>
+              <ul class="level-list">
+                <li>Class 1</li>
+                <li>Class 2</li>
+                <li>Class 3</li>
+                <li>Class 4</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- INTERMEDIATE -->
+          <div class="level-card">
+            <div class="level-icon">🚀</div>
+            <div>
+              <h3>Intermediate Phase</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Fostering critical thinking, collaborative problem-solving, and advanced linguistic skills.</p>
+              <ul class="level-list">
+                <li>Class 5</li>
+                <li>Class 6</li>
+                <li>Class 7</li>
+                <li>Class 8</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- ADVANCED -->
+          <div class="level-card">
+            <div class="level-icon">🎓</div>
+            <div>
+              <h3>Advanced Mastery</h3>
+              <p style="font-size: .95rem; margin-bottom: 1.5rem;">Preparing global leaders through research-led inquiry, digital literacy, and leadership mentoring.</p>
+              <ul class="level-list">
+                <li>Class 9</li>
+                <li>Class 10</li>
+                <li>Class 11</li>
+                <li>Class 12</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 6rem;">
+          <span class="section-label">Beyond Books</span>
+          <h2 class="section-title">Holistic <span>Development</span></h2>
+          <p>We believe academics is just one part of a child's growth. Our program includes creative arts, character formation, and physical education as core components of the daily schedule, ensuring every "Angel" is well-rounded and resilient.</p>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar-wrap">
+        <div class="sidebar-cta">
+          <h3>Secure Your Child's Future</h3>
+          <p>Admissions are currently open for all 12 classes. Give your child the gift of a Skypoint education where they will be seen, known, and celebrated.</p>
+          <a href="registration.html" class="btn-primary" style="width: 100%; justify-content: center; background: var(--gold-shimmer); color: var(--blue-dark); font-weight: 800;">Portal</a>
+          
+          <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--gold-shimmer); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--blue-dark);">📞</div>
+              <div>
+                <div style="font-size: .75rem; opacity: .6; text-transform: uppercase;">Admissions Office</div>
+                <div style="font-weight: 700;">08058969633</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+  <!-- Dynamic Scripts -->
+  <script src="assets/js/nav-dynamic.js"></script>
+  <script>
+    // Gold Dust Generator
+    function createDust() {
+      const wrap = document.getElementById('gold-dust');
+      for(let i=0; i<30; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        d.style.left = Math.random() * 100 + '%';
+        d.style.top = Math.random() * 100 + '%';
+        d.style.animationDelay = Math.random() * 8 + 's';
+        d.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        wrap.appendChild(d);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', createDust);
+  </script>
+
+  <!-- ===== SOCIAL FAB WIDGET ===== -->
+  <div style="position:fixed; bottom:2rem; right:2rem; display:flex; flex-direction:column; align-items:center; gap:.75rem; z-index:9999;">
+    <div id="fab-menu" style="display:flex; flex-direction:column; align-items:center; gap:.75rem; pointer-events:none;">
+      <button class="fab-social" data-tooltip="Facebook" onclick="window.open('https://www.facebook.com/saaiacademy','_blank')" style="width:48px;height:48px;border-radius:50%;background:#1877F2;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(24,119,242,.45);opacity:0;transform:translateY(16px) scale(.75);transition:all .3s ease;position:relative;"><i class="fab fa-facebook-f"></i></button>
+      <button class="fab-social" data-tooltip="Instagram" onclick="window.open('https://www.instagram.com/saaiacademy?igsh=MWo1bnBmeHNhNzF0Zg==','_blank')" style="width:48px;height:48px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(220,39,67,.35);opacity:0;transform:translateY(16px) scale(.75);transition:all .3s ease;position:relative;"><i class="fab fa-instagram"></i></button>
+      <button class="fab-social" data-tooltip="YouTube" onclick="window.open('https://www.youtube.com/@Saai_Academy','_blank')" style="width:48px;height:48px;border-radius:50%;background:#FF0000;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(255,0,0,.35);opacity:0;transform:translateY(16px) scale(.75);transition:all .3s ease;position:relative;"><i class="fab fa-youtube"></i></button>
+      <button class="fab-social" data-tooltip="TikTok" onclick="window.open('https://www.tiktok.com/@saai.academy?_r=1&_t=ZS-95x6HyrygsR','_blank')" style="width:48px;height:48px;border-radius:50%;background:#010101;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(0,0,0,.5);opacity:0;transform:translateY(16px) scale(.75);transition:all .3s ease;position:relative;"><i class="fab fa-tiktok"></i></button>
+      <button class="fab-social" data-tooltip="WhatsApp" onclick="window.open('https://wa.me/2348058969633','_blank')" style="width:48px;height:48px;border-radius:50%;background:#25D366;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 16px rgba(37,211,102,.35);opacity:0;transform:translateY(16px) scale(.75);transition:all .3s ease;position:relative;"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    <button id="fab-main" aria-label="Toggle social links" style="position:relative;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.25rem;box-shadow:0 8px 32px rgba(13,36,97,.45);transition:all .3s ease;z-index:1;"><i class="fas fa-share-alt"></i><span style="position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,var(--blue-dark),var(--blue));animation:fab-pulse 2s ease-in-out infinite;opacity:.25;pointer-events:none;"></span></button>
+  </div>
+  <style>
+    @keyframes fab-pulse { 0%,100%{transform:scale(1);opacity:.25;} 50%{transform:scale(1.5);opacity:0;} }
+    .fab-social:hover { transform:scale(1.12) !important; }
+    .fab-social::before { content:attr(data-tooltip); position:absolute; right:calc(100% + 10px); top:50%; transform:translateY(-50%); background:rgba(13,36,97,.9); color:#fff; font-size:.72rem; font-weight:600; padding:4px 9px; border-radius:6px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s ease; font-family:var(--font-body); }
+    .fab-social:hover::before { opacity:1; }
+    #fab-main:hover { transform:scale(1.1); }
+  </style>
+  <script src="assets/js/social-widget.js"></script>
+</body>
+</html>
